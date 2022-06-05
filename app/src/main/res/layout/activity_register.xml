@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".registerActivity">
+
+    <ScrollView
+        android:id="@+id/register_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="26px"
+            android:paddingTop="28px"
+            android:paddingBottom="16px">
+
+            <LinearLayout
+                android:id="@+id/mainlayout2sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/regtitletextview"
+                    style="@style/TitleTextView"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="일정 등록" />
+
+                <Button
+                    android:id="@+id/regbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="추가"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/regLinearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginVertical="10px">
+
+                <EditText
+                    android:id="@+id/titletext"
+                    android:hint="제목"
+                    style="@style/editText"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/locationtext"
+                    android:hint="위치"
+                    style="@style/editText"
+                    android:minHeight="48dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/regLinearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginVertical="10px">
+
+                <TextView
+                    android:id="@+id/isalldaytext"
+                    android:hint="하루종일"
+                    style="@style/TextView"
+                    android:minHeight="48dp" />
+
+                <TextView
+                    android:id="@+id/starttimetext"
+                    android:hint="시작"
+                    style="@style/TextView"
+                    android:minHeight="48dp" />
+
+                <TextView
+                    android:id="@+id/endtimetext"
+                    android:hint="종료"
+                    style="@style/TextView"
+                    android:minHeight="48dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/regLinearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginVertical="10px">
+
+                <TextView
+                    android:id="@+id/alarmtext"
+                    android:hint="알림"
+                    style="@style/TextView"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/memotext"
+                    android:hint="메모"
+                    style="@style/editText"
+                    android:gravity="top"
+                    android:minHeight="300dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

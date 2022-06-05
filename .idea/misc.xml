@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/MyApplication00/app/src/main/res/drawable-night/background_shape.xml" value="0.156" />
+        <entry key="..\:/MyApplication00/app/src/main/res/drawable-night/bluebox_shape.xml" value="0.156" />
+        <entry key="..\:/MyApplication00/app/src/main/res/drawable-night/greenbox_shape.xml" value="0.156" />
+        <entry key="..\:/MyApplication00/app/src/main/res/drawable/background_shape.xml" value="0.156" />
+        <entry key="..\:/MyApplication00/app/src/main/res/drawable/bluebox_shape.xml" value="0.156" />
+        <entry key="..\:/MyApplication00/app/src/main/res/drawable/edittext_style.xml" value="0.156" />
+        <entry key="..\:/MyApplication00/app/src/main/res/drawable/greenbox_shape.xml" value="0.156" />
+        <entry key="..\:/MyApplication00/app/src/main/res/layout/activity_main.xml" value="0.2312563323201621" />
+        <entry key="..\:/MyApplication00/app/src/main/res/layout/activity_register.xml" value="0.15020263424518743" />
+        <entry key="..\:/MyApplication00/app/src/main/res/layout/fragment_calendar.xml" value="0.15020263424518743" />
+        <entry key="..\:/MyApplication00/app/src/main/res/layout/fragment_settings.xml" value="0.15020263424518743" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable-night/edittext_style.xml" value="0.1205" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable-night/greenbox_style.xml" value="0.2965" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable-night/weeklygoal_style.xml" value="0.2965" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable-notnight/weeklygoal_style.xml" value="0.2965" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable/edittext_style.xml" value="0.1205" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable/greenbox_style.xml" value="0.2965" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable/weeklygoal_style.xml" value="0.2965" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/font/font.xml" value="0.22314814814814815" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/layout/activity_main.xml" value="0.1831306990881459" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/layout/fragment_calendar.xml" value="0.5" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/layout/fragment_settings.xml" value="0.14990942028985507" />
+        <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/layout/fragment_stat.xml" value="0.19022289766970618" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
