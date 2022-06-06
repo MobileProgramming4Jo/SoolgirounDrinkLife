@@ -1,15 +1,23 @@
-package com.example.myapplication00
+package com.example.projectapp
 
 import android.content.Context
 import android.database.sqlite.SQLiteOpenHelper
+import java.util.*
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
+import android.os.Build
+import androidx.annotation.Nullable
+import androidx.annotation.RequiresApi
+import java.time.LocalDate
+
+
+//context 정보는 멤버로 많이 사용하므로 반드시 생성자에 있어야 하고 나머지는 클래스 내부에 Static 멤버로 만들면 된다.
 
 class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
     // 자바에서 Static과 동일한 역할. 멤버 변수 설정
     companion object {
-        val DB_NAME = "project.db"
+        val DB_NAME = "mydb.db"
         val DB_VERSION = 1
         val TABLE_NAME = "daily"
         val DATE = "date"
@@ -65,12 +73,14 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         onCreate(db)
     }
 
-    // DB에 값을 넣어주는 함수 생성
-    fun insertGoal(date : String, daily_goal : Int, weekly_goal : Int):Boolean{
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun insert():Boolean{
+        val now = LocalDate.now()
+        var yesterday = now.minusDays(1)
         val values = ContentValues()
-        values.put(DATE, date)
-        values.put(DAILY_GOAL, daily_goal)
-        values.put(WEEKLY_GOAL, weekly_goal)
+        values.put(DATE, now.toString())
+        values.put(DAILY_GOAL, findDailyGoal(yesterday.toString()))
+        values.put(WEEKLY_GOAL, findWeeklyGoal(yesterday.toString()))
         val db = writableDatabase
         if(db.insert(TABLE_NAME, null, values)>0){
             db.close()
@@ -80,7 +90,6 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
             db.close()
             return false
         }
-
     }
 
     fun updateGoal(date : String, daily_goal: Int, weekly_goal: Int):Boolean{
@@ -101,14 +110,44 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         return flag
     }
 
-    fun findGoal(date:String) : Boolean{
+    fun findDailyGoal(date:String) : String{
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        lateinit var daily : String
+        if(flag){
+            cursor.moveToFirst()
+            daily = cursor.getString(1)
+        }
+        cursor.close()
+        db.close()
+        return daily;
+    }
+
+    fun findWeeklyGoal(date:String) : String{
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        lateinit var weekly : String;
+        if(flag){
+            cursor.moveToFirst()
+            weekly = cursor.getString(2)
+        }
+        cursor.close()
+        db.close()
+        return weekly
+    }
+
+    fun checkData(date:String):Boolean{
         val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
         val db = readableDatabase
         val cursor = db.rawQuery(strsql, null)
         val flag = cursor.count!=0
         cursor.close()
         db.close()
-        return flag
+        return flag;
     }
 
 
