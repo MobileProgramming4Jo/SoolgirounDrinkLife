@@ -83,6 +83,23 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
 
     }
 
+    // DB에 registerActivity에서 입력한 값을 넣어주는 함수 생성
+    fun insertDairy(date : String, daily_goal : Int, weekly_goal : Int):Boolean{
+        val values = ContentValues()
+        values.put(DATE, date)
+        values.put(DAILY_GOAL, daily_goal)
+        values.put(WEEKLY_GOAL, weekly_goal)
+        val db = writableDatabase
+        if(db.insert(TABLE_NAME, null, values)>0){
+            db.close()
+            return true
+        }
+        else{
+            db.close()
+            return false
+        }
+    }
+
     fun updateGoal(date : String, daily_goal: Int, weekly_goal: Int):Boolean{
         val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
         val db = writableDatabase

@@ -10,14 +10,13 @@
         android:id="@+id/mainscroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="30dp"
-        android:paddingHorizontal="10dp"
-        android:paddingBottom="16dp">
+        android:padding="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="5dp">
 
             <LinearLayout
                 android:id="@+id/mainlayout1"
@@ -92,9 +91,10 @@
             <LinearLayout
                 android:id="@+id/mainlayout2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="20dp"> <!--layout_height test-->
                 <LinearLayout
                     android:id="@+id/mainlayout2sub"
                     android:layout_width="match_parent"
@@ -113,15 +113,18 @@
                         android:background="@android:color/transparent"
                         android:layout_gravity="center"/>
                 </LinearLayout>
-                <CalendarView
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/calendarView"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-                    app:layout_constraintHorizontal_bias="0.488" android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/title"/>
+                    android:descendantFocusability="blocksDescendants"
+                    android:background="@drawable/background_shape"
+                    android:padding="15dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/calendar_custom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/> <!--layout_height test-->
+                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -129,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="20dp">
                 <TextView
                     style="@style/TitleTextView"
                     android:textSize="16sp"
@@ -145,31 +148,19 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp">
                         <TextView
+                            style="@style/BoldText"
                             android:textSize="14sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/notosans_bold"
-                            android:includeFontPadding="false"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:text="과 전체 회식" />
                         <TextView
-                            android:textSize="10sp"
+                            style="@style/MediumText"
                             android:textColor="@color/grey"
                             android:layout_marginLeft="5dp"
-                            android:fontFamily="@font/notosans_medium"
-                            android:includeFontPadding="false"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:text="건대입구 술집"/>
                     </LinearLayout>
                     <TextView
-                        android:textSize="10sp"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/notosans_medium"
-                        android:includeFontPadding="false"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        style="@style/MediumText"
                         android:text="2022.05.22 18:00 ~ 2022.05.22 22:00" />
                 </LinearLayout>
             </LinearLayout>
@@ -179,7 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="15dp">
                 <TextView
                     style="@style/TitleTextView"
                     android:textSize="16sp"
@@ -212,7 +203,7 @@
                         android:textSize="9sp"
                         style="@style/DiaryText"
                         android:gravity="right"
-                        android:text="작성하기 >"/>
+                        android:text="수정하기 >"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

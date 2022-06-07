@@ -11,9 +11,11 @@
         <entry key="..\:/MyApplication00/app/src/main/res/drawable/edittext_style.xml" value="0.156" />
         <entry key="..\:/MyApplication00/app/src/main/res/drawable/greenbox_shape.xml" value="0.156" />
         <entry key="..\:/MyApplication00/app/src/main/res/layout/activity_main.xml" value="0.2312563323201621" />
-        <entry key="..\:/MyApplication00/app/src/main/res/layout/activity_register.xml" value="0.15020263424518743" />
-        <entry key="..\:/MyApplication00/app/src/main/res/layout/fragment_calendar.xml" value="0.15020263424518743" />
+        <entry key="..\:/MyApplication00/app/src/main/res/layout/activity_register.xml" value="0.33" />
+        <entry key="..\:/MyApplication00/app/src/main/res/layout/fragment_calendar.xml" value="0.33" />
         <entry key="..\:/MyApplication00/app/src/main/res/layout/fragment_settings.xml" value="0.15020263424518743" />
+        <entry key="..\:/MyApplication00/app/src/main/res/layout/list_item_day.xml" value="0.25181159420289856" />
+        <entry key="..\:/MyApplication00/app/src/main/res/layout/list_item_month.xml" value="0.36580310880829014" />
         <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable-night/edittext_style.xml" value="0.1205" />
         <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable-night/greenbox_style.xml" value="0.2965" />
         <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable-night/weeklygoal_style.xml" value="0.2965" />
