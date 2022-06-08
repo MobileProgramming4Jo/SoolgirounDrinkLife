@@ -42,6 +42,7 @@
         <entry key="app/src/main/res/drawable/round_beige_rectangle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/round_rectangle.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_diary.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.17239583333333333" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.11197916666666667" />
         <entry key="app/src/main/res/layout/activity_show_diary.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_plus_minus_bar.xml" value="0.1125" />
