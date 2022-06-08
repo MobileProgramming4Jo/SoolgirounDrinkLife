@@ -14,7 +14,6 @@ class AdapterDay(val context: Context, val tempMonth:Int, val dayList: MutableLi
 
     var mydb: DBHelper = DBHelper(context)
     val ROW = 6
-    var selectedDate : String = ""
     private val mCallback = listener
 
     inner class DayView(val layout: ListItemDayBinding) : RecyclerView.ViewHolder(layout.root)
@@ -29,7 +28,6 @@ class AdapterDay(val context: Context, val tempMonth:Int, val dayList: MutableLi
         var date = dateFormatter.format(dayList[position])
 
         holder.layout.itemDayLayout.setOnClickListener {
-            selectedDate = date
             mCallback.setDate(date)
             //테스트용
             /*Toast.makeText(context, "${dayList[position]}", Toast.LENGTH_SHORT).show()

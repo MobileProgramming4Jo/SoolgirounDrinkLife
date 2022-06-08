@@ -14,20 +14,19 @@ import java.time.LocalDate
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.projectapp.DBHelper
-import android.widget.LinearLayout
-import android.widget.TextView
 
 
 class CalendarFragment : Fragment(), OnItemClick {
     private lateinit var binding : FragmentCalendarBinding
     private val myViewModel: MyViewModel by activityViewModels()
-    var mydb: DBHelper = DBHelper(requireActivity().applicationContext)
+    lateinit var mydb: DBHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCalendarBinding.inflate(inflater, container,false)
+        mydb = DBHelper(requireActivity().applicationContext)
 
         val date: String = LocalDate.now().toString()
 
