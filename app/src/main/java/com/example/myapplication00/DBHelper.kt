@@ -194,14 +194,16 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         return flag;
     }
 
-    fun insertDiary(alcohol_type: String, alcohol_quantity: Int, diary: String, self_examination: String, tip: String) : Boolean {
+    fun insertDiary(soju: Int, beer: Int, makeolli: Int, wine: Int, diary: String, self_examination: String, tip: String) : Boolean {
         val now = LocalDate.now()
         var yesterday = now.minusDays(1)
 
         val values = ContentValues()
         values.put(DATE, now.toString())
-        values.put(ALCOHOL_TYPE, alcohol_type)
-        values.put(ALCOHOL_QUANTITY, alcohol_quantity)
+        values.put(SOJU, soju)
+        values.put(BEER, beer)
+        values.put(MAKGEOLLI, makeolli)
+        values.put(WINE, wine)
         values.put(DIARY, diary)
         values.put(SELF_EXAMINATION ,self_examination)
         values.put(TIP, tip)
@@ -219,7 +221,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         }
     }
 
-    fun updateDiary(date: String, alcohol_type: String, alcohol_quantity: Int, diary: String, self_examination: String, tip: String):Boolean{
+    fun updateDiary(date: String, soju: Int, beer: Int, makeolli: Int, wine: Int, diary: String, self_examination: String, tip: String):Boolean{
         val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
         val db = writableDatabase
         val cursor = db.rawQuery(strsql, null)
@@ -227,13 +229,13 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         if(flag){
             cursor.moveToFirst()
             val values = ContentValues()
-            values.put(ALCOHOL_TYPE, alcohol_type)
-            values.put(ALCOHOL_QUANTITY, alcohol_quantity)
+            values.put(SOJU, soju)
+            values.put(BEER, beer)
+            values.put(MAKGEOLLI, makeolli)
+            values.put(WINE, wine)
             values.put(DIARY, diary)
             values.put(SELF_EXAMINATION ,self_examination)
             values.put(TIP, tip)
-            values.put(DAILY_GOAL, findDailyGoal(yesterday.toString()))
-            values.put(WEEKLY_GOAL, findWeeklyGoal(yesterday.toString()))
             db.update(TABLE_NAME, values, "$DATE = ?", arrayOf(date))
         }
         //작업 완료 후 db, cursor를 닫아주는 함수 호출
