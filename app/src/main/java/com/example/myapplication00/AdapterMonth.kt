@@ -10,13 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication00.databinding.ListItemMonthBinding
 import java.util.*
 
-class AdapterMonth(val context: Context): RecyclerView.Adapter<AdapterMonth.MonthView>() {
+class AdapterMonth(val context: Context, listener : OnItemClick): RecyclerView.Adapter<AdapterMonth.MonthView>() {
 
     val center = Int.MAX_VALUE / 2
     private var calendar = Calendar.getInstance()
 
     //inner class MonthView(val layout: View): RecyclerView.ViewHolder(layout)
     inner class MonthView(val layout: ListItemMonthBinding) : RecyclerView.ViewHolder(layout.root)
+    val listener = listener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthView {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_month, parent, false)
@@ -40,7 +41,7 @@ class AdapterMonth(val context: Context): RecyclerView.Adapter<AdapterMonth.Mont
         }
 
         val dayListManager = GridLayoutManager(context, 7) //holder.layout.context
-        val dayListAdapter = AdapterDay(context ,tempMonth, dayList)
+        val dayListAdapter = AdapterDay(context ,tempMonth, dayList, listener)
 
         holder.layout.itemMonthDayList.apply {
             layoutManager = dayListManager
