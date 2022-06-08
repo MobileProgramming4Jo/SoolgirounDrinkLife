@@ -17,7 +17,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
 
     // 자바에서 Static과 동일한 역할. 멤버 변수 설정
     companion object {
-        val DB_NAME = "mydb.db"
+        val DB_NAME = "project.db"
         val DB_VERSION = 1
         val TABLE_NAME = "daily"
         val DATE = "date"
@@ -159,7 +159,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         val db = readableDatabase
         val cursor = db.rawQuery(strsql, null)
         val flag = cursor.count!=0
-        lateinit var daily : String
+        var daily = ""
         if(flag){
             cursor.moveToFirst()
             daily = cursor.getString(1)
@@ -174,7 +174,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         val db = readableDatabase
         val cursor = db.rawQuery(strsql, null)
         val flag = cursor.count!=0
-        lateinit var weekly : String;
+        var weekly = ""
         if(flag){
             cursor.moveToFirst()
             weekly = cursor.getString(2)
