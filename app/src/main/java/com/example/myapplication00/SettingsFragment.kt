@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 class SettingsFragment : Fragment() {
 
     var menuData = ArrayList<String>()
+    lateinit var adapter: SettingsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +24,22 @@ class SettingsFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.settingRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = SettingsAdapter(menuData)
+
+        adapter = SettingsAdapter(menuData)
+        recyclerView.adapter = adapter
+
+        adapter.itemClickListener = object : SettingsAdapter.ItemClickListener {
+            override fun onClickItem(data: String) {
+//               //...
+            }
+            override fun onSwitchChanged(isChecked: Boolean) {
+                if(isChecked) {
+                    ThemeManager.applyTheme(ThemeManager.ThemeMode.DARK)
+                } else {
+                    ThemeManager.applyTheme(ThemeManager.ThemeMode.LIGHT)
+                }
+            }
+        }
 
         return view
     }
