@@ -10,6 +10,7 @@ class SettingsAdapter(val items: ArrayList<String>): RecyclerView.Adapter<Settin
 
     public interface ItemClickListener {
         public fun onClickItem(data: String)
+        public fun onSwitchChanged(isChecked: Boolean)
     }
 
     var itemClickListener: ItemClickListener? = null
@@ -18,6 +19,11 @@ class SettingsAdapter(val items: ArrayList<String>): RecyclerView.Adapter<Settin
         init {
             binding.settingRowTextView.setOnClickListener {
                 itemClickListener?.onClickItem(items[adapterPosition])
+            }
+
+            binding.darkModeSwitchButton.setOnCheckedChangeListener { compoundButton, isChecked ->
+                itemClickListener?.onSwitchChanged(isChecked)
+                compoundButton.toggle()
             }
         }
     }
@@ -38,3 +44,4 @@ class SettingsAdapter(val items: ArrayList<String>): RecyclerView.Adapter<Settin
         return items.size
     }
 }
+

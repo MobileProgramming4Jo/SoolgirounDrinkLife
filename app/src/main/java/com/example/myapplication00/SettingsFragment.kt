@@ -18,6 +18,7 @@ class SettingsFragment : Fragment() {
         super.onAttach(context)
         activity = context as Activity
     }
+    lateinit var adapter: SettingsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
