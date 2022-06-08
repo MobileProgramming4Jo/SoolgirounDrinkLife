@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.widget.Button
+        android:id="@+id/minusButton"
+        android:layout_width="24dp"
+        android:text="-"
+        android:background="@drawable/left_border_radius_rectangle"
+        android:layout_height="25dp" />
+
+    <TextView
+        android:id="@+id/countText"
+        android:layout_width="38dp"
+        android:text="0"
+        android:textSize="12dp"
+        android:textAlignment="center"
+        android:layout_height="25dp" />
+
+    <android.widget.Button
+        android:id="@+id/plusButton"
+        android:text="+"
+        android:layout_width="24dp"
+        android:layout_height="25dp"
+        android:background="@drawable/right_border_radius_rectangle"/>
+
+</LinearLayout>

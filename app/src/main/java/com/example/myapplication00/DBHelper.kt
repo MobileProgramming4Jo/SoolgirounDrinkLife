@@ -193,7 +193,4 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         db.close()
         return flag;
     }
-
-
-
 }

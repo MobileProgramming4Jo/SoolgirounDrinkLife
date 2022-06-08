@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
+import android.widget.LinearLayout
 
 class CalendarFragment : Fragment() {
 
@@ -20,6 +20,14 @@ class CalendarFragment : Fragment() {
         regbtn.setOnClickListener(object :View.OnClickListener {
             override fun onClick(v: View?) {
                 val intent = Intent(context, registerActivity::class.java)
+                startActivity(intent)
+            }
+        })
+
+        val diaryBox = view.findViewById<LinearLayout>(R.id.diaryBox)
+        diaryBox.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(context, ShowDiaryActivity::class.java)
                 startActivity(intent)
             }
         })
