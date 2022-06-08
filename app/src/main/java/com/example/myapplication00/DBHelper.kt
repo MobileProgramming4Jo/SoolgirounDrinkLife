@@ -6,8 +6,8 @@ import java.util.*
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
-import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
+import com.example.myapplication00.DiaryData
 import java.time.LocalDate
 
 
@@ -194,19 +194,19 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         return flag;
     }
 
-    fun insertDiary(soju: Int, beer: Int, makeolli: Int, wine: Int, diary: String, self_examination: String, tip: String) : Boolean {
+    fun insertDiary(diaryData: DiaryData) : Boolean {
         val now = LocalDate.now()
         var yesterday = now.minusDays(1)
 
         val values = ContentValues()
         values.put(DATE, now.toString())
-        values.put(SOJU, soju)
-        values.put(BEER, beer)
-        values.put(MAKGEOLLI, makeolli)
-        values.put(WINE, wine)
-        values.put(DIARY, diary)
-        values.put(SELF_EXAMINATION ,self_examination)
-        values.put(TIP, tip)
+        values.put(SOJU, diaryData.soju)
+        values.put(BEER, diaryData.beer)
+        values.put(MAKGEOLLI, diaryData.makeolli)
+        values.put(WINE, diaryData.wine)
+        values.put(DIARY, diaryData.diary)
+        values.put(SELF_EXAMINATION , diaryData.self_examination)
+        values.put(TIP, diaryData.tip)
         values.put(DAILY_GOAL, findDailyGoal(yesterday.toString()))
         values.put(WEEKLY_GOAL, findWeeklyGoal(yesterday.toString()))
 
@@ -221,7 +221,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         }
     }
 
-    fun updateDiary(date: String, soju: Int, beer: Int, makeolli: Int, wine: Int, diary: String, self_examination: String, tip: String):Boolean{
+    fun updateDiary(date: String, diaryData: DiaryData):Boolean{
         val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
         val db = writableDatabase
         val cursor = db.rawQuery(strsql, null)
@@ -229,18 +229,45 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         if(flag){
             cursor.moveToFirst()
             val values = ContentValues()
-            values.put(SOJU, soju)
-            values.put(BEER, beer)
-            values.put(MAKGEOLLI, makeolli)
-            values.put(WINE, wine)
-            values.put(DIARY, diary)
-            values.put(SELF_EXAMINATION ,self_examination)
-            values.put(TIP, tip)
+            values.put(SOJU, diaryData.soju)
+            values.put(BEER, diaryData.beer)
+            values.put(MAKGEOLLI, diaryData.makeolli)
+            values.put(WINE, diaryData.wine)
+            values.put(DIARY, diaryData.diary)
+            values.put(SELF_EXAMINATION, diaryData.self_examination)
+            values.put(TIP, diaryData.tip)
             db.update(TABLE_NAME, values, "$DATE = ?", arrayOf(date))
         }
         //작업 완료 후 db, cursor를 닫아주는 함수 호출
         cursor.close()
         db.close()
         return flag
+    }
+
+    fun getDiary(date: String): DiaryData {
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        lateinit var diaryData : DiaryData
+        if(flag){
+            cursor.moveToFirst()
+            diaryData = DiaryData(
+                isExist = true,
+                soju = cursor.getInt(11),
+                beer = cursor.getInt(12),
+                makeolli = cursor.getInt(13),
+                wine = cursor.getInt(14),
+                diary = cursor.getString(15),
+                self_examination = cursor.getString(16),
+                tip = cursor.getString(17)
+            )
+        } else {
+            diaryData = DiaryData(false, 0,0,0,0,"","","")
+        }
+
+        cursor.close()
+        db.close()
+        return diaryData
     }
 }

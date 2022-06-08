@@ -64,6 +64,7 @@
                 android:layout_weight="1"
                 android:text="소주" />
             <TextView
+                android:id="@+id/sojuCnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0잔" />
@@ -80,6 +81,7 @@
                 android:layout_weight="1"
                 android:text="맥주" />
             <TextView
+                android:id="@+id/beerCnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0잔" />
@@ -96,6 +98,7 @@
                 android:layout_weight="1"
                 android:text="막걸리" />
             <TextView
+                android:id="@+id/makeolliCnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0잔" />
@@ -112,6 +115,7 @@
                 android:layout_weight="1"
                 android:text="와인" />
             <TextView
+                android:id="@+id/wineCnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0잔" />

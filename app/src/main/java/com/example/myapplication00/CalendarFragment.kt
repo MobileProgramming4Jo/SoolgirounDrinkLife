@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.TextView
 
 class CalendarFragment : Fragment() {
 
@@ -28,6 +29,9 @@ class CalendarFragment : Fragment() {
         diaryBox.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val intent = Intent(context, ShowDiaryActivity::class.java)
+                //temp
+                val date = view.findViewById<TextView>(R.id.diaryDate)
+                intent.putExtra("date", date.text)
                 startActivity(intent)
             }
         })

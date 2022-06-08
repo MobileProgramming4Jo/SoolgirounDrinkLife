@@ -35,7 +35,7 @@
                 android:layout_weight="1" />
 
             <android.widget.Button
-                android:id="@+id/editButton"
+                android:id="@+id/saveButton"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
                 android:layout_marginRight="20dp"
@@ -72,6 +72,7 @@
             <com.example.myapplication00.CustomPlusMinusBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/sojuPMBar"
                 android:layout_marginLeft="20dp" />
 
             <com.example.myapplication00.CustomSwitchButton
@@ -98,7 +99,8 @@
 
             <com.example.myapplication00.CustomPlusMinusBar
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/beerPMBar"/>
 
             <com.example.myapplication00.CustomSwitchButton
                 android:layout_width="wrap_content"
@@ -125,7 +127,8 @@
 
             <com.example.myapplication00.CustomPlusMinusBar
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/makeolliPMBar"/>
 
             <com.example.myapplication00.CustomSwitchButton
                 android:layout_width="wrap_content"
@@ -151,7 +154,8 @@
 
             <com.example.myapplication00.CustomPlusMinusBar
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/winePMBar" />
 
             <com.example.myapplication00.CustomSwitchButton
                 android:layout_width="wrap_content"
@@ -175,6 +179,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_margin="20dp"
+            android:id="@+id/diaryEditText"
             android:background="@drawable/round_beige_rectangle" />
 
         <TextView
@@ -190,6 +195,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_margin="20dp"
+            android:id="@+id/selfExaminationEditText"
             android:background="@drawable/round_beige_rectangle" />
 
         <TextView
@@ -205,6 +211,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_margin="20dp"
+            android:id="@+id/tipEditText"
             android:background="@drawable/round_beige_rectangle" />
 
     </LinearLayout>
