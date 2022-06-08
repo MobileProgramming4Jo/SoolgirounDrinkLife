@@ -12,11 +12,4 @@
         android:layout_weight="1"
         android:layout_margin="10dp" />
 
-    <com.kyleduo.switchbutton.SwitchButton
-        android:id="@+id/darkModeSwitchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:visibility="gone"/>
-
 </LinearLayout>

@@ -1,16 +1,17 @@
 package com.example.myapplication00
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication00.databinding.RowSettingBinding
 
 class SettingsAdapter(val items: ArrayList<String>): RecyclerView.Adapter<SettingsAdapter.ViewHolder>() {
 
     public interface ItemClickListener {
-        public fun onClickItem(data: String)
-        public fun onSwitchChanged(isChecked: Boolean)
+        public fun onClickItem(index: Int)
     }
 
     var itemClickListener: ItemClickListener? = null
@@ -18,12 +19,7 @@ class SettingsAdapter(val items: ArrayList<String>): RecyclerView.Adapter<Settin
     inner class ViewHolder(val binding: RowSettingBinding): RecyclerView.ViewHolder(binding.root) {
         init {
             binding.settingRowTextView.setOnClickListener {
-                itemClickListener?.onClickItem(items[adapterPosition])
-            }
-
-            binding.darkModeSwitchButton.setOnCheckedChangeListener { compoundButton, isChecked ->
-                itemClickListener?.onSwitchChanged(isChecked)
-                compoundButton.toggle()
+                itemClickListener?.onClickItem(adapterPosition)
             }
         }
     }
@@ -35,9 +31,6 @@ class SettingsAdapter(val items: ArrayList<String>): RecyclerView.Adapter<Settin
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.settingRowTextView.text = items[position]
-        if (position==0) {
-            holder.binding.darkModeSwitchButton.visibility = View.VISIBLE
-        }
     }
 
     override fun getItemCount(): Int {
