@@ -181,18 +181,18 @@
 
                 <LinearLayout
                     android:visibility="gone"
-                    android:id="@+id/diaryinfo"
+                    android:id="@+id/diaryBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/greenbox_shape"
                     android:orientation="vertical"
                     android:padding="12dp">
                     <TextView
-                        android:id="@+id/diarydatetext"
                         style="@style/DiaryText"
                         android:layout_marginBottom="5dp"
                         android:fontFamily="@font/notosans_medium"
                         android:includeFontPadding="false"
+                        android:id="@+id/diaryDate"
                         android:text="2022년 5월 31일"
                         android:textSize="14sp" />
                     <TextView
@@ -211,7 +211,7 @@
                         android:text="추가하기 >"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/diaryinfo_add"
+                    android:id="@+id/diaryBox_none"
                     android:layout_gravity="center"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"

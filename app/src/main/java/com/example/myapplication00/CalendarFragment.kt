@@ -14,6 +14,8 @@ import java.time.LocalDate
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.projectapp.DBHelper
+import android.widget.LinearLayout
+import android.widget.TextView
 
 
 class CalendarFragment : Fragment(), OnItemClick {
@@ -50,19 +52,27 @@ class CalendarFragment : Fragment(), OnItemClick {
         val snap = PagerSnapHelper()
         snap.attachToRecyclerView(binding.calendarCustom)
 
-        //<<<<<<<
         myViewModel.selectedDate.observe(viewLifecycleOwner, Observer {
             if(it != ""){ //나중에 it으로 db에 해당 date의 diary 정보가 있는지 확인
-                binding.diaryinfo.isVisible = true
-                binding.diaryinfoAdd.isVisible = false
-                binding.diarydatetext.text = it
-                binding.diarydatetext.text = it
+                binding.diaryBox.isVisible = true
+                binding.diaryBoxNone.isVisible = false
+                binding.diaryDate.text = it
+                binding.diaryDate.text = it
             } else {
-                binding.diaryinfo.isVisible = false
-                binding.diaryinfoAdd.isVisible = true
+                binding.diaryBox.isVisible = false
+                binding.diaryBoxNone.isVisible = true
             }
         })
-        //>>>>>>>
+
+        binding.diaryBox.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(context, ShowDiaryActivity::class.java)
+                //temp
+                //val date = view.findViewById<TextView>(R.id.diaryDate)
+                intent.putExtra("date", binding.diaryDate.text)
+                startActivity(intent)
+            }
+        })
 
         return binding.root
     }

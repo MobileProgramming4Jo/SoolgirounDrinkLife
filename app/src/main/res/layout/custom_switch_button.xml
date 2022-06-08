@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <android.widget.Button
+        android:layout_width="30dp"
+        android:layout_height="24dp"
+        android:id="@+id/leftSwitchButton"
+        android:textSize="12dp"
+        android:text="잔"
+        android:background="@drawable/left_border_radius_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.widget.Button
+        android:layout_width="30dp"
+        android:layout_height="24dp"
+        android:textSize="12dp"
+        android:id="@+id/rightSwitchButton"
+        android:background="@drawable/right_border_radius_gray_rectangle"
+        app:layout_constraintStart_toEndOf="@+id/leftSwitchButton"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="병"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
