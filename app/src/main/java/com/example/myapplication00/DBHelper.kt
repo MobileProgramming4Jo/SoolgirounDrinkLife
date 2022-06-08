@@ -115,6 +115,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
             db.close()
             return false
         }
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun findAlcohol() : ArrayList<Int> {
@@ -175,6 +176,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         db.close()
         return flag
     }
+
 /*
     fun find(date : String, key :String) : String{
         val keyColumn = when(key){
