@@ -1,19 +1,18 @@
 package com.example.myapplication00
 
+import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.TimePicker
-import com.example.myapplication00.databinding.ActivityMainBinding
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isGone
 import com.example.myapplication00.databinding.ActivityRegisterBinding
-import com.google.android.material.tabs.TabLayoutMediator
+import com.example.projectapp.DBHelper
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.*
+
 
 class registerActivity : AppCompatActivity() {
     lateinit var binding: ActivityRegisterBinding
@@ -22,6 +21,7 @@ class registerActivity : AppCompatActivity() {
     var start_time: String = ""
     var end_time: String = ""
     var alarm: String = ""
+    var mydb: DBHelper = DBHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +32,22 @@ class registerActivity : AppCompatActivity() {
     }
 
     private fun initlayout() {
+        var start_time_date: String = ""
+        var start_time_hour: String = ""
+        var end_time_date: String = ""
+        var end_time_hour: String = ""
+
         binding.regbtn.setOnClickListener {
+            mydb.insertDairy(binding.titletext.toString(), binding.locationtext.toString(),
+                isallday, start_time, end_time, alarm, binding.memotext.toString())
+
             val regIntent = Intent(this, MainActivity::class.java)
             intent.putExtra("title",binding.titletext.toString())
             intent.putExtra("location",binding.locationtext.toString())
             intent.putExtra("isallday",isallday)
+            start_time = start_time_date + " " + start_time_hour
             intent.putExtra("start_time",start_time)
+            end_time = end_time_date + " " + end_time_hour
             intent.putExtra("end_time",end_time)
             intent.putExtra("alarm",alarm)
             intent.putExtra("memo",binding.memotext.toString())
@@ -48,30 +58,61 @@ class registerActivity : AppCompatActivity() {
             if (isallday){
                 binding.isalldaytext.setHintTextColor(resources.getColor(R.color.black))
                 isallday = false
+                binding.starttimeHour.isGone = true
+                binding.endtimeHour.isGone = true
             } else {
                 binding.isalldaytext.setHintTextColor(resources.getColor(R.color.green))
                 isallday = true
+                binding.starttimeHour.isGone = false
+                binding.endtimeHour.isGone = false
             }
         }
 
         val cal = Calendar.getInstance()
-        binding.starttimetext.setOnClickListener {
-            val timeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                start_time = "${hourOfDay}${minute}"
+        val dateFormatter = SimpleDateFormat("yyyy-MM-dd")
+        val hourFormatter = SimpleDateFormat("kk:mm")
+        binding.starttimeDate.setOnClickListener {
+            val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                cal.time = Date()
+                start_time_date = dateFormatter.format(cal.getTime())
+                //Toast.makeText(this, start_time_date, Toast.LENGTH_SHORT).show() //테스트용
+                binding.starttimeDate.setText(start_time_date)
             }
-            TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),true).show()
+            DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH)).show()
         }
-        binding.endtimetext.setOnClickListener {
+        binding.starttimeHour.setOnClickListener {
             val timeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                end_time = "${hourOfDay}${minute}"
+                cal.time = Date()
+                start_time_hour = hourFormatter.format(cal.getTime())
+                binding.starttimeHour.setText(start_time_hour)
             }
-            TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),true).show()
+            TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),false).show()
         }
-        binding.alarmtext.setOnClickListener {
-            val timeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                alarm = "${hourOfDay}${minute}"
+
+        binding.endtimeDate.setOnClickListener {
+            val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                cal.time = Date()
+                end_time_date = dateFormatter.format(cal.getTime())
+                binding.endtimeDate.setText(end_time_date)
             }
-            TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),true).show()
+            DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH)).show()
+        }
+        binding.endtimeHour.setOnClickListener {
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                cal.time = Date()
+                end_time_hour = hourFormatter.format(cal.getTime())
+                binding.endtimeHour.setText(end_time_hour)
+            }
+            TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),false).show()
+        }
+
+        binding.alarmHour.setOnClickListener {
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                cal.time = Date()
+                alarm = hourFormatter.format(cal.getTime())
+                binding.alarmHour.setText(alarm)
+            }
+            TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),false).show()
         }
 
     }

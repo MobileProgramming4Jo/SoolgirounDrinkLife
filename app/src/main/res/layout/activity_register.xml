@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginVertical="10px">
+                android:layout_marginVertical="5dp">
 
                 <EditText
                     android:id="@+id/titletext"
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginVertical="10px">
+                android:layout_marginVertical="5dp">
 
                 <TextView
                     android:id="@+id/isalldaytext"
@@ -74,17 +74,82 @@
                     style="@style/TextView"
                     android:minHeight="48dp" />
 
-                <TextView
-                    android:id="@+id/starttimetext"
-                    android:hint="시작"
-                    style="@style/TextView"
-                    android:minHeight="48dp" />
-
-                <TextView
-                    android:id="@+id/endtimetext"
-                    android:hint="종료"
-                    style="@style/TextView"
-                    android:minHeight="48dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edittext_style">
+                    <TextView
+                        android:id="@+id/starttimetext"
+                        android:hint="시작"
+                        style="@style/TextView"
+                        android:background="@android:color/transparent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:minHeight="48dp" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/starttime_date"
+                            android:hint="날짜 📅"
+                            style="@style/RegularText"
+                            android:gravity="center"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp" />
+                        <TextView
+                            android:id="@+id/starttime_hour"
+                            android:hint="시간 🕐"
+                            style="@style/RegularText"
+                            android:gravity="center"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edittext_style">
+                    <TextView
+                        android:id="@+id/endtimetext"
+                        android:hint="종료"
+                        style="@style/TextView"
+                        android:background="@android:color/transparent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:minHeight="48dp" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/endtime_date"
+                            android:hint="날짜 📅"
+                            style="@style/RegularText"
+                            android:gravity="center"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp" />
+                        <TextView
+                            android:id="@+id/endtime_hour"
+                            android:hint="시간 🕐"
+                            style="@style/RegularText"
+                            android:gravity="center"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -92,13 +157,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginVertical="10px">
+                android:layout_marginVertical="5dp">
 
-                <TextView
-                    android:id="@+id/alarmtext"
-                    android:hint="알림"
-                    style="@style/TextView"
-                    android:minHeight="48dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edittext_style">
+                    <TextView
+                        android:id="@+id/alarmtext"
+                        android:hint="알림"
+                        style="@style/TextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:minHeight="48dp" />
+                    <TextView
+                        android:id="@+id/alarm_hour"
+                        android:hint="시간 🕐"
+                        style="@style/RegularText"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:minHeight="48dp" />
+                </LinearLayout>
+
 
                 <EditText
                     android:id="@+id/memotext"
