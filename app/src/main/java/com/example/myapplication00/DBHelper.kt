@@ -31,9 +31,10 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         val ISALLDAY = "isallday"
         val ALARM = "alarm"
         val MEMO = "memo"
-        val ALCOHOL_TYPE = "alcohol_type"
-        val ALCOHOL_QUANTITY = "alcohol_quantity"
-        val ALCOHOL_DEGREE = "alcohol_degree"
+        val SOJU = "soju"
+        val BEER = "beer"
+        val MAKGEOLLI = "makeolli"
+        val WINE = "wine"
         val DIARY = "diary"
         val SELF_EXAMINATION = "self_examination"
         val TIP = "tip"
@@ -54,9 +55,10 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
                 "$ISALLDAY boolean, " +
                 "$ALARM text, " +
                 "$MEMO text, " +
-                "$ALCOHOL_TYPE text, " +
-                "$ALCOHOL_QUANTITY integer, " +
-                "$ALCOHOL_DEGREE real, " +
+                "$SOJU integer, " +
+                "$BEER integer, " +
+                "$MAKGEOLLI integer, " +
+                "$WINE integer," +
                 "$DIARY text, " +
                 "$SELF_EXAMINATION text, " +
                 "$TIP text);"
@@ -90,6 +92,48 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
             db.close()
             return false
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun findAlcohol() : ArrayList<Int> {
+        val date = LocalDate.now().toString()
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        val array = arrayListOf<Int>()
+        if(flag){
+            cursor.moveToFirst()
+            array.add(cursor.getInt(11))
+            array.add(cursor.getInt(12))
+            array.add(cursor.getInt(13))
+            array.add(cursor.getInt(14))
+        }
+        cursor.close()
+        db.close()
+        return array
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun updateAlcohol(array : ArrayList<Int>) : Boolean{
+        val date = LocalDate.now().toString()
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = writableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        if(flag){
+            cursor.moveToFirst()
+            val values = ContentValues()
+            values.put(SOJU ,array[0])
+            values.put(BEER, array[1])
+            values.put(MAKGEOLLI, array[2])
+            values.put(WINE, array[3])
+            db.update(TABLE_NAME, values, "$DATE = ?", arrayOf(date))
+        }
+        //작업 완료 후 db, cursor를 닫아주는 함수 호출
+        cursor.close()
+        db.close()
+        return flag
     }
 
     fun updateGoal(date : String, daily_goal: Int, weekly_goal: Int):Boolean{
