@@ -15,6 +15,8 @@ import com.example.myapplication00.databinding.FragmentCalendarBinding
 import java.time.LocalDate
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 
 
 class CalendarFragment : Fragment(), OnItemClick {
