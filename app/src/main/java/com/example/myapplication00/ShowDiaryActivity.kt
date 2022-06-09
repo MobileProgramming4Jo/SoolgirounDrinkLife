@@ -40,12 +40,25 @@ class ShowDiaryActivity : AppCompatActivity() {
     }
 
     private fun convertText(alcoholType: String, count: Int) : String {
-        if (alcoholType == "soju") {
-            val bottle = count / 7
-            val glass = count % 7
-            return bottle.toString() + "병 " + glass.toString() + "잔"
+
+        var measure: Int = 1
+
+        when(alcoholType) {
+            "soju" -> measure = 7
+            "beer" -> measure = 3
+            "makeolli" -> measure = 4
+            "wine" -> measure = 8
         }
 
-        return ""
+        val bottle = count / measure
+        val glass = count % measure
+
+        if(bottle == 0) {
+            return glass.toString() + "잔"
+        } else if(glass == 0) {
+            return bottle.toString() + "병"
+        }
+
+        return bottle.toString() + "병 " + glass.toString() + "잔"
     }
 }
