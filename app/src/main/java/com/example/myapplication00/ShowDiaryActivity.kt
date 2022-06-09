@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.myapplication00.databinding.ActivityShowDiaryBinding
 import com.example.projectapp.DBHelper
 
@@ -12,6 +14,9 @@ class ShowDiaryActivity : AppCompatActivity() {
     lateinit var binding: ActivityShowDiaryBinding
     lateinit var diaryData: DiaryData
     lateinit var dBHelper: DBHelper
+    lateinit var date: String
+
+    lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,19 +27,32 @@ class ShowDiaryActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        dBHelper = DBHelper(this)
+        initLayout()
+        initButton()
+    }
 
-        val date = intent.getStringExtra("date")
-        diaryData = dBHelper.getDiary(date!!)
+    private fun initButton() {
+
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                initLayout()
+            }
+        }
 
         binding.editButton.setOnClickListener {
+
             val intent = Intent(this, DiaryActivity::class.java)
             intent.putExtra("diaryData", diaryData)
             intent.putExtra("date", date)
-            startActivity(intent)
+            activityResultLauncher.launch(intent)
         }
+    }
 
-        Log.d("DiaryData", diaryData.toString())
+    private fun initLayout() {
+        dBHelper = DBHelper(this)
+
+        date = intent.getStringExtra("date") ?: ""
+        diaryData = dBHelper.getDiary(date)
 
         binding.sojuCnt.text = convertText("soju", diaryData.soju)
         binding.beerCnt.text = convertText("beer", diaryData.beer)
@@ -69,12 +87,4 @@ class ShowDiaryActivity : AppCompatActivity() {
         return bottle.toString() + "병 " + glass.toString() + "잔"
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(resultCode== RESULT_OK) {
-            Log.d("INIT", "INIT!!!")
-            init()
-        }
-    }
 }
