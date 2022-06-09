@@ -40,6 +40,10 @@ class registerActivity : AppCompatActivity() {
                 Toast.makeText(this, "제목을 입력해야 합니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            if (start_time_date == ""){
+                Toast.makeText(this, "시작일을 입력해야 합니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             val regIntent = Intent(this, MainActivity::class.java)
             intent.putExtra("title",binding.titletext.text.toString())
