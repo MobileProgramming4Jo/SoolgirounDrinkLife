@@ -205,7 +205,6 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         db.close()
         return flag
     }
-<<<<<<< HEAD
 
 /*
     fun find(date : String, key :String) : String{
