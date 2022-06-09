@@ -359,9 +359,9 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
             var isallday = cursor.getInt(8) > 0
 
             if (isallday) {
-                time = "${startT} ~ ${endT}"
-            } else {
                 "${startT}"
+            } else {
+                time = "${startT} ~ ${endT}"
             }
         }
         cursor.close()
