@@ -6,7 +6,10 @@ import java.util.*
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.core.database.getIntOrNull
+import androidx.core.database.getStringOrNull
 import com.example.myapplication00.DiaryData
 import java.time.LocalDate
 
@@ -81,7 +84,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         var yesterday = now.minusDays(1)
         val values = ContentValues()
         values.put(DATE, now.toString())
-        values.put(DAILY_GOAL, findDailyGoal(yesterday.toString()))
+        values.put(DAILY_GOAL, findDailyGoal(yesterday.toString())!!)
         values.put(WEEKLY_GOAL, findWeeklyGoal(yesterday.toString()))
         val db = writableDatabase
         if(db.insert(TABLE_NAME, null, values)>0){
@@ -92,6 +95,36 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
             db.close()
             return false
         }
+    }
+
+    fun findWeeklyGoal(date: String): String {
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        var weekly = ""
+        if(flag){
+            cursor.moveToFirst()
+            weekly = cursor.getString(2)
+        }
+        cursor.close()
+        db.close()
+        return weekly
+    }
+
+    fun findDailyGoal(date: String): String {
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        var daily = ""
+        if(flag){
+            cursor.moveToFirst()
+            daily = cursor.getString(1)
+        }
+        cursor.close()
+        db.close()
+        return daily
     }
 
     // DB에 registerActivity에서 입력한 값을 넣어주는 함수
@@ -117,7 +150,6 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun findAlcohol() : ArrayList<Int> {
         val date = LocalDate.now().toString()
         val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
@@ -215,35 +247,6 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         return value
     }*/
 
-    fun findDailyGoal(date:String) : String{
-        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
-        val db = readableDatabase
-        val cursor = db.rawQuery(strsql, null)
-        val flag = cursor.count!=0
-        var daily = ""
-        if(flag){
-            cursor.moveToFirst()
-            daily = cursor.getString(1)
-        }
-        cursor.close()
-        db.close()
-        return daily;
-    }
-
-    fun findWeeklyGoal(date:String) : String{
-        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
-        val db = readableDatabase
-        val cursor = db.rawQuery(strsql, null)
-        val flag = cursor.count!=0
-        var weekly = ""
-        if(flag){
-            cursor.moveToFirst()
-            weekly = cursor.getString(2)
-        }
-        cursor.close()
-        db.close()
-        return weekly
-    }
 
 
     //해당 date의 일일 목표 달성 여부
@@ -336,17 +339,18 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         val cursor = db.rawQuery(strsql, null)
         val flag = cursor.count!=0
         lateinit var diaryData : DiaryData
+
         if(flag){
             cursor.moveToFirst()
             diaryData = DiaryData(
                 isExist = true,
-                soju = cursor.getInt(11),
-                beer = cursor.getInt(12),
-                makeolli = cursor.getInt(13),
-                wine = cursor.getInt(14),
-                diary = cursor.getString(15),
-                self_examination = cursor.getString(16),
-                tip = cursor.getString(17)
+                soju = cursor.getIntOrNull(11) ?: 0,
+                beer = cursor.getIntOrNull(12) ?: 0,
+                makeolli = cursor.getIntOrNull(13) ?: 0,
+                wine = cursor.getIntOrNull(14) ?: 0,
+                diary = cursor.getStringOrNull( 15) ?: "",
+                self_examination = cursor.getStringOrNull( 16) ?: "",
+                tip = cursor.getStringOrNull( 17) ?: ""
             )
         } else {
             diaryData = DiaryData(false, 0,0,0,0,"","","")
