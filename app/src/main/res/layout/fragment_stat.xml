@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5"
     tools:context=".StatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello_statistic_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="통계"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:textColor="#292929"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="35dp"
+                android:paddingBottom="20dp"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/custom_tab"
+                android:layout_marginBottom="20dp"
+                android:padding="5dp"
+                app:tabIndicatorHeight="1dp"
+                app:tabIndicatorColor="@color/white"
+                app:tabTextColor="@color/black"
+                app:tabUnboundedRipple="false">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/statistics_tab_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="일 음주량" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/statistics_tab_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="월 주종" />
+
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/statistics_tab_kcal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="칼로리" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/custom_advice" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="평가"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="30dp" />
+
+                <TextView
+                    android:id="@+id/stat_advice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="목표치보다 더 많이 마셨어요!! 경고!!"
+                    android:textSize="15dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginLeft="40dp"/>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

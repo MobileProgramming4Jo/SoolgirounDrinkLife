@@ -9,8 +9,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.myapplication00.databinding.ActivityMainBinding
-import com.example.myapplication00.databinding.ActivityRegisterBinding
-import com.example.projectapp.DBHelper
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -87,14 +85,17 @@ class MainActivity : AppCompatActivity() {
             this@MainActivity,
             1,
             receiverIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            PendingIntent.FLAG_CANCEL_CURRENT
         )
 
+        val calendar = Calendar.getInstance()
+        if(calendar.get(Calendar.HOUR_OF_DAY)>=8){
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
 
-        val calendar = java.util.Calendar.getInstance().apply {
-
+        calendar.apply {
             timeInMillis = System.currentTimeMillis()
-            set(java.util.Calendar.HOUR_OF_DAY, 8)
+            set(Calendar.HOUR_OF_DAY, 8)
         }
 
 
@@ -139,7 +140,7 @@ class MainActivity : AppCompatActivity() {
             )
             val calendar = java.util.Calendar.getInstance().apply {
                 timeInMillis = System.currentTimeMillis()
-                set(Calendar.HOUR_OF_DAY, 8)
+                set(Calendar.HOUR_OF_DAY, 12)
                 add(Calendar.DATE, 14)
             }
             if (Build.VERSION.SDK_INT >= 23) {

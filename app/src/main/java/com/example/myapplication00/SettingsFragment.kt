@@ -33,7 +33,7 @@ class SettingsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
 
         initData()
-        val dialog =CustomDialog(activity)
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.settingRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         val adapter = SettingsAdapter(menuData)

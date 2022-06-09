@@ -17,4 +17,6 @@
     <color name="darkbg">#FFE6DEDE</color>
     <color name="grey">#FF848484</color>
     <color name="lightGray">#D9D9D9</color>
+    <color name="pink">#FF7B8E</color>
+    <color name="line">#E6DEDE</color>
 </resources>
