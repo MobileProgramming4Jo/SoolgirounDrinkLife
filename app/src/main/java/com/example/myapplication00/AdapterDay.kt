@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication00.databinding.ListItemDayBinding
-import com.example.projectapp.DBHelper
 import java.text.SimpleDateFormat
 import java.util.*
 

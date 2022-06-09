@@ -7,14 +7,11 @@ import android.content.Context.ALARM_SERVICE
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
-import android.icu.util.Calendar
 import android.os.Build
 import android.util.Log
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.app.NotificationCompat
-import com.example.projectapp.DBHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import java.time.LocalDate

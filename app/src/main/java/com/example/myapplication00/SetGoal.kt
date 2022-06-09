@@ -1,8 +1,5 @@
 package com.example.myapplication00
-
-import android.content.Intent
 import android.graphics.Color
-import android.graphics.ColorSpace
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
@@ -10,7 +7,6 @@ import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.widget.Toast
 import com.example.myapplication00.databinding.ActivitySetGoalBinding
-import com.example.projectapp.DBHelper
 import kotlinx.android.synthetic.main.activity_set_goal.*
 import java.time.LocalDate
 

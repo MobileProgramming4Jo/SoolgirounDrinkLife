@@ -1,5 +1,7 @@
 package com.example.myapplication00
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,22 +15,28 @@ import com.example.myapplication00.databinding.FragmentCalendarBinding
 import java.time.LocalDate
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.example.projectapp.DBHelper
 
 
 class CalendarFragment : Fragment(), OnItemClick {
     private lateinit var binding : FragmentCalendarBinding
     private val myViewModel: MyViewModel by activityViewModels()
     lateinit var mydb: DBHelper
+    lateinit var activity : Activity
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activity = context as Activity
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCalendarBinding.inflate(inflater, container,false)
-        mydb = DBHelper(requireActivity().applicationContext)
+        mydb = DBHelper(activity)
 
-        val date: String = LocalDate.now().toString()
+
 
         val view = inflater.inflate(R.layout.fragment_calendar, null)
         val regbtn = binding.regbtn
@@ -79,6 +87,13 @@ class CalendarFragment : Fragment(), OnItemClick {
         myViewModel.setLiveData(date)
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        val date: String = LocalDate.now().toString()
+        val daily_goal = mydb.findDailyGoal(date)
+        val weekly_goal = mydb.findWeeklyGoal(date)
+        binding.dailygoaltext.text = "소주 "+daily_goal+"병 이하"
+        binding.weeklygoaltext.text = "소주 "+weekly_goal+"병 이하"
+    }
 }
 

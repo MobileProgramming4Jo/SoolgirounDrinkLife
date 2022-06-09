@@ -1,4 +1,4 @@
-package com.example.projectapp
+package com.example.myapplication00
 
 import android.content.Context
 import android.database.sqlite.SQLiteOpenHelper
@@ -150,6 +150,23 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun findAlcohol2(date: String) : Int {
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        var num = 0
+
+        if(flag){
+            cursor.moveToFirst()
+            num = cursor.getInt(11) + cursor.getInt(12)+cursor.getInt(13)+cursor.getInt(14)
+        }
+        cursor.close()
+        db.close()
+        return num
+    }
+
     fun findAlcohol() : ArrayList<Int> {
         val date = LocalDate.now().toString()
         val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
@@ -168,6 +185,27 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         db.close()
         return array
     }
+
+    fun getAllAlcohol() : ArrayList<Int> {
+        var strsql="select * from $TABLE_NAME;"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val result = arrayListOf<Int>(0,0,0,0)
+        if(cursor != null && cursor.count >0) {
+            cursor.moveToFirst()
+            do {
+                result[0] = result[0] + cursor.getInt(11)
+                result[1] = result[1] + cursor.getInt(12)
+                result[2] = result[2] + cursor.getInt(13)
+                result[3] = result[3] + cursor.getInt(14)
+            } while (cursor.moveToNext())
+            //작업 완료 후 db, cursor를 닫아주는 함수 호출
+        }
+        cursor.close()
+        db.close()
+        return  result
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun updateAlcohol(array : ArrayList<Int>) : Boolean{
@@ -360,4 +398,145 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         db.close()
         return diaryData
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getAlcohol(cmonth: Int): ArrayList<Int> {
+        var dayAlchol = ArrayList<Int>()
+        lateinit var date: LocalDate
+        var days = 0
+        val now = LocalDate.now().toString()
+        var parse = now.split("-")
+        when (cmonth) {
+            1 -> {
+                date = LocalDate.of(parse[0].toInt(), 1, 1)
+                days = 31
+            }
+            2 -> {
+                date = LocalDate.of(parse[0].toInt(), 2, 1)
+                days = 30
+            }
+            3 -> {
+                date = LocalDate.of(parse[0].toInt(), 3, 1)
+                days = 31
+            }
+            4 -> {
+                date = LocalDate.of(parse[0].toInt(), 4, 1)
+                days = 30
+            }
+            5 -> {
+                date = LocalDate.of(parse[0].toInt(), 5, 1)
+                days = 31
+            }
+            6 -> {
+                date = LocalDate.of(parse[0].toInt(), 6, 1)
+                days = 30
+            }
+            7 -> {
+                date = LocalDate.of(parse[0].toInt(), 7, 1)
+                days = 31
+            }
+            8 -> {
+                date = LocalDate.of(parse[0].toInt(), 8, 1)
+                days = 31
+            }
+            9 -> {
+                date = LocalDate.of(parse[0].toInt(), 9, 1)
+                days = 30
+            }
+            10 -> {
+                date = LocalDate.of(parse[0].toInt(), 10, 1)
+                days = 31
+            }
+            11 -> {
+                date = LocalDate.of(parse[0].toInt(), 11, 1)
+                days = 30
+            }
+            12 -> {
+                date = LocalDate.of(parse[0].toInt(), 12, 1)
+                days = 31
+            }
+        }
+
+
+        for (i in 0..days - 1) {
+            var changeDate = date.plusDays(i.toLong()).toString()
+            dayAlchol.add(findAlcohol2(changeDate)) // 날마다 종류별 1개씩 마신 양 가져오기
+            //해야 할 작업 작성부분
+
+        }
+
+        return dayAlchol
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getDailyGoal(cmonth: Int): ArrayList<Int> {
+        var daily_goal = ArrayList<Int>()
+        lateinit var date: LocalDate
+        var days = 0
+        val now = LocalDate.now().toString()
+        var parse = now.split("-")
+        when (cmonth) {
+            1 -> {
+                date = LocalDate.of(parse[0].toInt(), 1, 1)
+                days = 31
+            }
+            2 -> {
+                date = LocalDate.of(parse[0].toInt(), 2, 1)
+                days = 30
+            }
+            3 -> {
+                date = LocalDate.of(parse[0].toInt(), 3, 1)
+                days = 31
+            }
+            4 -> {
+                date = LocalDate.of(parse[0].toInt(), 4, 1)
+                days = 30
+            }
+            5 -> {
+                date = LocalDate.of(parse[0].toInt(), 5, 1)
+                days = 31
+            }
+            6 -> {
+                date = LocalDate.of(parse[0].toInt(), 6, 1)
+                days = 30
+            }
+            7 -> {
+                date = LocalDate.of(parse[0].toInt(), 7, 1)
+                days = 31
+            }
+            8 -> {
+                date = LocalDate.of(parse[0].toInt(), 8, 1)
+                days = 31
+            }
+            9 -> {
+                date = LocalDate.of(parse[0].toInt(), 9, 1)
+                days = 30
+            }
+            10 -> {
+                date = LocalDate.of(parse[0].toInt(), 10, 1)
+                days = 31
+            }
+            11 -> {
+                date = LocalDate.of(parse[0].toInt(), 11, 1)
+                days = 30
+            }
+            12 -> {
+                date = LocalDate.of(parse[0].toInt(), 12, 1)
+                days = 31
+            }
+        }
+
+
+        for (i in 0..days - 1) {
+            var changeDate = date.plusDays(i.toLong()).toString()
+            daily_goal.add(findDailyGoal(changeDate).toInt()) // 날마다 종류별 1개씩 마신 양 가져오기
+            //해야 할 작업 작성부분
+
+        }
+
+        return daily_goal
+
+    }
+
 }

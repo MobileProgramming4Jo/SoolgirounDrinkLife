@@ -7,8 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import com.example.myapplication00.databinding.ActivityDiaryBinding
-import com.example.projectapp.DBHelper
-import kotlinx.android.synthetic.main.custom_plus_minus_bar.view.*
 
 class DiaryActivity : AppCompatActivity() {
     lateinit var binding: ActivityDiaryBinding
