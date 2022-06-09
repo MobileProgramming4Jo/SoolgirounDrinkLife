@@ -2,6 +2,7 @@ package com.example.myapplication00
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
@@ -56,8 +57,8 @@ class SettingsFragment : Fragment() {
                     }
 
                     2 -> {
-                        dialog.setDlg()
-                        dialog.myDig()
+                        val intent = Intent(activity, SetGoal::class.java)
+                        startActivity(intent)
                     }
                 }
             }
