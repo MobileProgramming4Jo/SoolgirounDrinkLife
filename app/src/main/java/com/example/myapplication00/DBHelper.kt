@@ -98,6 +98,23 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         }
     }
 
+    fun insertFirst(daily_goal : Int, weekly_goal : Int):Boolean{
+        val now = LocalDate.now()
+        val values = ContentValues()
+        values.put(DATE, now.toString())
+        values.put(DAILY_GOAL, daily_goal)
+        values.put(WEEKLY_GOAL, weekly_goal)
+        val db = writableDatabase
+        if(db.insert(TABLE_NAME, null, values)>0){
+            db.close()
+            return true
+        }
+        else{
+            db.close()
+            return false
+        }
+    }
+
     fun findWeeklyGoal(date: String): String {
         val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
         val db = readableDatabase
@@ -248,45 +265,6 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         db.close()
         return flag
     }
-
-/*
-    fun find(date : String, key :String) : String{
-        val keyColumn = when(key){
-            "daily_goal" -> 1
-            "weekly_goal" -> 2
-            "checked" -> 3
-            "title" -> 4
-            "location" -> 5
-            "start_time" -> 6
-            "end_time" -> 7
-            "isallday" -> 8
-            "alarm" -> 9
-            "memo" -> 10
-            "alcohol_type" -> 11
-            "alcohol_quantity" -> 12
-            "alcohol_degree" -> 13
-            "diary" -> 14
-            "self_examination" -> 15
-            "tip" -> 16
-            else -> -1
-        }
-        if (keyColumn == -1){
-            return "invalid key"
-        }
-        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
-        val db = readableDatabase
-        val cursor = db.rawQuery(strsql, null)
-        val flag = cursor.count!=0
-        lateinit var value : String;
-        if(flag){
-            cursor.moveToFirst()
-            value = cursor.getString(keyColumn)
-        }
-        cursor.close()
-        db.close()
-        return value
-    }*/
-
 
 
     //해당 date의 일일 목표 달성 여부
