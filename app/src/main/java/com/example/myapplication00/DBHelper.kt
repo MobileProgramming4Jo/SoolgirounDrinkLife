@@ -283,15 +283,12 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         cursor.close()
         db.close()
 
-        if (daily < 0 || drunk < 0){
-            return -1
-        }
-
-        return if (daily <= drunk){
+        return if (daily < 0 || drunk < 0)
+            -1
+        else if (daily <= drunk)
             1
-        } else {
+        else
             0
-        }
     }
 
     fun getScheduleTitle(date: String) : String {
