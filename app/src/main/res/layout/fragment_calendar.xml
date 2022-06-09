@@ -112,6 +112,7 @@
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:src="@drawable/ic_btn_plus"
+                        android:layout_marginTop="20dp"
                         tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
                 <RelativeLayout
@@ -138,6 +139,8 @@
                     android:textSize="16sp"
                     android:text="일정"/>
                 <LinearLayout
+                    android:id="@+id/scheduleBox"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -148,11 +151,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp">
                         <TextView
+                            android:id="@+id/scheduleBox_title"
                             style="@style/BoldText"
                             android:textSize="14sp"
                             android:layout_width="wrap_content"
                             android:text="과 전체 회식" />
                         <TextView
+                            android:id="@+id/scheduleBox_location"
                             style="@style/MediumText"
                             android:textColor="@color/grey"
                             android:layout_marginLeft="5dp"
@@ -160,8 +165,23 @@
                             android:text="건대입구 술집"/>
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/scheduleBox_time"
                         style="@style/MediumText"
                         android:text="2022.05.22 18:00 ~ 2022.05.22 22:00" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/scheduleBox_none"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="@drawable/background_shape">
+                    <TextView
+                        style="@style/MediumText"
+                        android:textColor="@color/grey"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:text="일정 없음"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -201,10 +221,11 @@
                         android:layout_marginVertical="5dp"
                         android:background="#FFFFFF" />
                     <TextView
+                        android:id="@+id/diaryBoxBtn"
                         android:textSize="9sp"
                         style="@style/DiaryText"
                         android:gravity="right"
-                        android:text="추가하기 >"/>
+                        android:text="수정하기 >"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/diaryBox_none"

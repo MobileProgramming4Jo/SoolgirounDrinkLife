@@ -59,18 +59,41 @@ class CalendarFragment : Fragment(), OnItemClick {
         snap.attachToRecyclerView(binding.calendarCustom)
 
         myViewModel.selectedDate.observe(viewLifecycleOwner, Observer {
-            if(it != ""){ //나중에 it으로 db에 해당 date의 diary 정보가 있는지 확인
+            //schedulebox
+            if(mydb.getScheduleTitle(it) != ""){ //데이터 존재
+                binding.scheduleBox.isVisible = true
+                binding.scheduleBoxNone.isVisible = false
+                binding.scheduleBoxTitle.text = mydb.getScheduleTitle(it)
+                binding.scheduleBoxLocation.text = mydb.getScheduleLocation(it)
+                binding.scheduleBoxTime.text = mydb.getScheduleTime(it)
+            } else { //존재하지 않음
+                binding.scheduleBox.isVisible = false
+                binding.scheduleBoxNone.isVisible = true
+            }
+
+            //diarybox
+            var alcoholString = mydb.getAlcoholString(it)
+            if(alcoholString != ""){ //데이터 존재
                 binding.diaryBox.isVisible = true
                 binding.diaryBoxNone.isVisible = false
                 binding.diaryDate.text = it
-                binding.diaryDate.text = it
-            } else {
+                binding.diarytypetext.text = alcoholString
+            } else { //존재하지 않음
                 binding.diaryBox.isVisible = false
                 binding.diaryBoxNone.isVisible = true
             }
         })
 
-        binding.diaryBox.setOnClickListener(object : View.OnClickListener {
+        binding.diaryBoxNone.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(context, ShowDiaryActivity::class.java)
+                //temp
+                //val date = view.findViewById<TextView>(R.id.diaryDate)
+                intent.putExtra("date", binding.diaryDate.text)
+                startActivity(intent)
+            }
+        })
+        binding.diaryBoxBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val intent = Intent(context, ShowDiaryActivity::class.java)
                 //temp
