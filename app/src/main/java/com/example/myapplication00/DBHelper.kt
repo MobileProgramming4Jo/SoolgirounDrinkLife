@@ -151,7 +151,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun findAlcohol(date: String) : Int {
+    fun findAlcohol2(date: String) : Int {
         val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
         val db = readableDatabase
         val cursor = db.rawQuery(strsql, null)
@@ -165,6 +165,25 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         cursor.close()
         db.close()
         return num
+    }
+
+    fun findAlcohol() : ArrayList<Int> {
+        val date = LocalDate.now().toString()
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        val array = arrayListOf<Int>()
+        if(flag){
+            cursor.moveToFirst()
+            array.add(cursor.getInt(11))
+            array.add(cursor.getInt(12))
+            array.add(cursor.getInt(13))
+            array.add(cursor.getInt(14))
+        }
+        cursor.close()
+        db.close()
+        return array
     }
 
     fun getAllAlcohol() : ArrayList<Int> {
@@ -441,7 +460,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
 
         for (i in 0..days - 1) {
             var changeDate = date.plusDays(i.toLong()).toString()
-            dayAlchol.add(findAlcohol(changeDate)) // 날마다 종류별 1개씩 마신 양 가져오기
+            dayAlchol.add(findAlcohol2(changeDate)) // 날마다 종류별 1개씩 마신 양 가져오기
             //해야 할 작업 작성부분
 
         }
