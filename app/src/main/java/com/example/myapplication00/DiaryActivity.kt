@@ -4,9 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import com.example.myapplication00.databinding.ActivityDiaryBinding
 import com.example.projectapp.DBHelper
+import kotlinx.android.synthetic.main.custom_plus_minus_bar.view.*
 
 class DiaryActivity : AppCompatActivity() {
     lateinit var binding: ActivityDiaryBinding
@@ -26,9 +28,16 @@ class DiaryActivity : AppCompatActivity() {
         diaryData = intent.getSerializableExtra("diaryData") as DiaryData
 
         binding.sojuPMBar.findViewById<TextView>(R.id.countText).text = diaryData.soju.toString()
+        binding.sojuPMBar.countNum = diaryData.soju
+
         binding.beerPMBar.findViewById<TextView>(R.id.countText).text = diaryData.beer.toString()
+        binding.beerPMBar.countNum = diaryData.beer
+
         binding.makeolliPMBar.findViewById<TextView>(R.id.countText).text = diaryData.makeolli.toString()
+        binding.makeolliPMBar.countNum = diaryData.makeolli
+
         binding.winePMBar.findViewById<TextView>(R.id.countText).text = diaryData.wine.toString()
+        binding.winePMBar.countNum = diaryData.wine
 
         binding.diaryEditText.setText(diaryData.diary)
         binding.selfExaminationEditText.setText(diaryData.self_examination)
@@ -50,6 +59,8 @@ class DiaryActivity : AppCompatActivity() {
                 tip = binding.tipEditText.text.toString()
             )
 
+            Log.d("DiaryData", diaryData.toString())
+
             var isSucceed = false
 
             if(!isExist) {
@@ -59,6 +70,7 @@ class DiaryActivity : AppCompatActivity() {
             }
             if (isSucceed) {
                 val intent = Intent()
+//                intent.putExtra("DiaryData", diaryData)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             } else {

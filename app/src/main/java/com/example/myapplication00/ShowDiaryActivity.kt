@@ -3,6 +3,7 @@ package com.example.myapplication00
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.myapplication00.databinding.ActivityShowDiaryBinding
 import com.example.projectapp.DBHelper
 
@@ -33,10 +34,16 @@ class ShowDiaryActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        Log.d("DiaryData", diaryData.toString())
+
         binding.sojuCnt.text = convertText("soju", diaryData.soju)
         binding.beerCnt.text = convertText("beer", diaryData.beer)
         binding.makeolliCnt.text = convertText("makeolli", diaryData.makeolli)
         binding.wineCnt.text = convertText("wine", diaryData.wine)
+
+        binding.diaryTextView.text = diaryData.diary
+        binding.selfExaminationTextView.text = diaryData.self_examination
+        binding.tipTextView.text = diaryData.tip
     }
 
     private fun convertText(alcoholType: String, count: Int) : String {
@@ -60,5 +67,14 @@ class ShowDiaryActivity : AppCompatActivity() {
         }
 
         return bottle.toString() + "병 " + glass.toString() + "잔"
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(resultCode== RESULT_OK) {
+            Log.d("INIT", "INIT!!!")
+            init()
+        }
     }
 }
