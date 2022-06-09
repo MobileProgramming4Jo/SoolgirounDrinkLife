@@ -12,6 +12,7 @@ import androidx.core.database.getIntOrNull
 import androidx.core.database.getStringOrNull
 import com.example.myapplication00.DiaryData
 import java.time.LocalDate
+import kotlin.math.floor
 
 
 //context 정보는 멤버로 많이 사용하므로 반드시 생성자에 있어야 하고 나머지는 클래스 내부에 Static 멤버로 만들면 된다.
@@ -128,10 +129,11 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
     }
 
     // DB에 registerActivity에서 입력한 값을 넣어주는 함수
-    fun insertDairy(title : String, location: String,
+    fun insertDairy(date: String, title : String, location: String,
                     isallday : Boolean, start_time : String, end_time : String,
                     alarm : String, memo : String ) : Boolean{
         val values = ContentValues()
+        values.put(DATE, date)
         values.put(TITLE, title)
         values.put(LOCATION, location)
         values.put(ISALLDAY, isallday)
@@ -302,13 +304,130 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         }
         cursor.close()
         db.close()
-        return if (daily < 0 || drunk < 0){
-            -1
-        } else if (daily <= drunk){
+
+        if (daily < 0 || drunk < 0){
+            return -1
+        }
+
+        return if (daily <= drunk){
             1
         } else {
             0
         }
+    }
+
+    fun getScheduleTitle(date: String) : String {
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        var title = ""
+        if(flag){
+            cursor.moveToFirst()
+            title = cursor.getString(4)
+        }
+        cursor.close()
+        db.close()
+
+        return title
+    }
+    fun getScheduleLocation(date: String) : String{
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        var location : String = ""
+        if(flag){
+            cursor.moveToFirst()
+            location = cursor.getString(5)
+        }
+        cursor.close()
+        db.close()
+
+        return location
+    }
+    fun getScheduleTime(date: String) : String{
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        var time : String = ""
+        if(flag){
+            cursor.moveToFirst()
+            var startT = cursor.getString(6)
+            var endT = cursor.getString(7)
+            var isallday = cursor.getInt(8) > 0
+
+            if (isallday) {
+                time = "${startT} ~ ${endT}"
+            } else {
+                "${startT}"
+            }
+        }
+        cursor.close()
+        db.close()
+
+        return time
+    }
+
+    fun getAlcoholString(date: String): String {
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        var alcoholString : String = ""
+
+        if(flag){ //데이터 존재
+            cursor.moveToFirst()
+
+            var soju = cursor.getIntOrNull(11) ?: 0
+            if (soju > 0) {
+                alcoholString += "소주"
+                var bottle = soju.floorDiv(7)
+                if (bottle > 0) alcoholString += " ${bottle} 병"
+                var cup = soju % 7
+                if (cup > 0) alcoholString += " ${cup} 잔"
+            }
+
+            var beer = cursor.getIntOrNull(12) ?: 0
+            if (beer > 0) {
+                alcoholString += if(alcoholString == "") "맥주"
+                                    else "\n맥주"
+                var bottle = beer.floorDiv(7)
+                if (bottle > 0) alcoholString += " ${bottle} 병"
+                var cup = beer % 7
+                if (cup > 0) alcoholString += " ${cup} 잔"
+            }
+
+            var makeolli = cursor.getIntOrNull(13) ?: 0
+            if (makeolli > 0) {
+                alcoholString += if(alcoholString == "") "막걸리"
+                                    else "\n막걸리"
+                var bottle = makeolli.floorDiv(7)
+                if (bottle > 0) alcoholString += " ${bottle} 병"
+                var cup = makeolli % 7
+                if (cup > 0) alcoholString += " ${cup} 잔"
+            }
+
+            var wine = cursor.getIntOrNull(14) ?: 0
+            if (wine > 0) {
+                alcoholString += if(alcoholString == "") "와인"
+                                    else "\n와인"
+                var bottle = wine.floorDiv(7)
+                if (bottle > 0) alcoholString += " ${bottle} 병"
+                var cup = wine % 7
+                if (cup > 0) alcoholString += " ${cup} 잔"
+            }
+
+            if (alcoholString == ""){
+                alcoholString += "금주 성공!"
+            }
+        }
+        //else : 데이터 없음, alcoholString = ""
+
+        cursor.close()
+        db.close()
+        return alcoholString
     }
 
     fun checkData(date:String):Boolean{

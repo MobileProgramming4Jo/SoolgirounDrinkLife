@@ -36,19 +36,31 @@ class registerActivity : AppCompatActivity() {
         var end_time_hour: String = ""
 
         binding.regbtn.setOnClickListener {
-            mydb.insertDairy(binding.titletext.toString(), binding.locationtext.toString(),
-                isallday, start_time, end_time, alarm, binding.memotext.toString())
+            if (binding.titletext.text.toString() == ""){
+                Toast.makeText(this, "제목을 입력해야 합니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             val regIntent = Intent(this, MainActivity::class.java)
-            intent.putExtra("title",binding.titletext.toString())
-            intent.putExtra("location",binding.locationtext.toString())
+            intent.putExtra("title",binding.titletext.text.toString())
+            intent.putExtra("location",binding.locationtext.text.toString())
             intent.putExtra("isallday",isallday)
-            start_time = start_time_date + " " + start_time_hour
+            if(isallday){
+                start_time = start_time_date
+                end_time = end_time_date
+            } else {
+                start_time = start_time_date + " " + start_time_hour
+                end_time = end_time_date + " " + end_time_hour
+            }
             intent.putExtra("start_time",start_time)
-            end_time = end_time_date + " " + end_time_hour
             intent.putExtra("end_time",end_time)
             intent.putExtra("alarm",alarm)
-            intent.putExtra("memo",binding.memotext.toString())
+            intent.putExtra("memo",binding.memotext.text.toString())
+
+            //테스트
+            //Toast.makeText(this, isallday.toString(), Toast.LENGTH_SHORT).show()
+            mydb.insertDairy(start_time_date, binding.titletext.text.toString(), binding.locationtext.text.toString(),
+                isallday, start_time, end_time, alarm, binding.memotext.text.toString())
             startActivity(regIntent)
         }
 
@@ -98,7 +110,7 @@ class registerActivity : AppCompatActivity() {
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, month)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                Toast.makeText(this, cal.time.toString(), Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, cal.time.toString(), Toast.LENGTH_SHORT).show()
                 end_time_date = dateFormatter.format(cal.time)
                 binding.endtimeDate.text = end_time_date
             }
