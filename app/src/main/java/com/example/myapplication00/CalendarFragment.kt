@@ -30,7 +30,6 @@ class CalendarFragment : Fragment(), OnItemClick {
 
         val date: String = LocalDate.now().toString()
 
-
         val view = inflater.inflate(R.layout.fragment_calendar, null)
         val regbtn = binding.regbtn
         regbtn.setOnClickListener(object :View.OnClickListener {
