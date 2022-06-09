@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import com.example.myapplication00.databinding.ActivityRegisterBinding
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 
@@ -63,8 +64,17 @@ class registerActivity : AppCompatActivity() {
 
             //테스트
             //Toast.makeText(this, isallday.toString(), Toast.LENGTH_SHORT).show()
-            mydb.insertDairy(start_time_date, binding.titletext.text.toString(), binding.locationtext.text.toString(),
-                isallday, start_time, end_time, alarm, binding.memotext.text.toString())
+            val date = LocalDate.now()
+            val daily_goal = mydb.findDailyGoal(date.toString()).toInt()
+            val weekly_goal = mydb.findWeeklyGoal(date.toString()).toInt()
+            if(mydb.checkData(date.toString())){
+                mydb.updateDairy(start_time_date, binding.titletext.text.toString(), binding.locationtext.text.toString(),
+                    isallday, start_time, end_time, alarm, binding.memotext.text.toString())
+            }else{
+                mydb.insertDairy(start_time_date, binding.titletext.text.toString(), binding.locationtext.text.toString(),
+                    isallday, start_time, end_time, alarm, binding.memotext.text.toString(), daily_goal, weekly_goal)
+            }
+
             startActivity(regIntent)
         }
 

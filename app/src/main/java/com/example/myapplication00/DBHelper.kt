@@ -148,7 +148,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
     // DB에 registerActivity에서 입력한 값을 넣어주는 함수
     fun insertDairy(date: String, title : String, location: String,
                     isallday : Boolean, start_time : String, end_time : String,
-                    alarm : String, memo : String ) : Boolean{
+                    alarm : String, memo : String, daily_goal: Int, weekly_goal: Int) : Boolean{
         val values = ContentValues()
         values.put(DATE, date)
         values.put(TITLE, title)
@@ -158,6 +158,8 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         values.put(END_TIME, end_time)
         values.put(ALARM, alarm)
         values.put(MEMO, memo)
+        values.put(DAILY_GOAL, daily_goal)
+        values.put(WEEKLY_GOAL, weekly_goal)
         val db = writableDatabase
         if(db.insert(TABLE_NAME, null, values)>0){
             db.close()
@@ -167,6 +169,32 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
             db.close()
             return false
         }
+    }
+
+    fun updateDairy(date: String, title : String, location: String,
+                    isallday : Boolean, start_time : String, end_time : String,
+                    alarm : String, memo : String) : Boolean{
+        val strsql = "select * from $TABLE_NAME where $DATE = '$date';"
+        val db = writableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count!=0
+        if(flag){
+            cursor.moveToFirst()
+            val values = ContentValues()
+            values.put(DATE, date)
+            values.put(TITLE, title)
+            values.put(LOCATION, location)
+            values.put(ISALLDAY, isallday)
+            values.put(START_TIME, start_time)
+            values.put(END_TIME, end_time)
+            values.put(ALARM, alarm)
+            values.put(MEMO, memo)
+            db.update(TABLE_NAME, values, "$DATE = ?", arrayOf(date))
+        }
+        //작업 완료 후 db, cursor를 닫아주는 함수 호출
+        cursor.close()
+        db.close()
+        return flag
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -299,6 +327,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         var title = ""
         if(flag){
             cursor.moveToFirst()
+            title = cursor.getString(4)
             title = cursor.getString(4)
         }
         cursor.close()

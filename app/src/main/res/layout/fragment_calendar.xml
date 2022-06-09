@@ -125,7 +125,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/calendar_custom"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/> <!--layout_height test-->
+                        android:layout_height="wrap_content" /> <!--layout_height test-->
                 </RelativeLayout>
             </LinearLayout>
 
