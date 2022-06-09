@@ -51,6 +51,10 @@ class SettingsFragment : Fragment() {
                         }
                     }
 
+                    1 -> {
+
+                    }
+
                     2 -> {
                         dialog.setDlg()
                         dialog.myDig()
