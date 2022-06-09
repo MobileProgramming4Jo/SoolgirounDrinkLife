@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.io.File
 
 class SettingsFragment : Fragment() {
 
@@ -52,7 +53,9 @@ class SettingsFragment : Fragment() {
                     }
 
                     1 -> {
-
+                        deleteCache(activity.baseContext)
+                        val status = deleteDB()
+                        Log.d("DELETE DB", status.toString())
                     }
 
                     2 -> {
@@ -78,7 +81,50 @@ class SettingsFragment : Fragment() {
         } else {
             menuData[0] = "다크모드"
         }
+    }
 
+    fun deleteDB(): Boolean {
+        val dbPath = "data/data/" + activity.packageName
+        val dbName = "project.db"
+
+        val fullPath = dbPath + "/databases/" + dbName
+        Log.d("FULLPATH", fullPath)
+
+        val dbFile = File(fullPath)
+
+        if(dbFile!=null) {
+            return dbFile.delete()
+        }
+
+        return false
+    }
+
+    companion object {
+        fun deleteCache(context: Context) {
+            try {
+                val dir = context.cacheDir
+                deleteDir(dir)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
+        fun deleteDir(dir: File): Boolean {
+            if(dir != null && dir.isDirectory) {
+                val children = dir.list()
+                for(child in children) {
+                    val success = deleteDir(File(dir, child))
+                    if (!success) {
+                        return false
+                    }
+                }
+                return dir.delete()
+            } else if(dir!=null && dir.isFile) {
+                return dir.delete()
+            } else {
+                return false
+            }
+        }
     }
 
 }
