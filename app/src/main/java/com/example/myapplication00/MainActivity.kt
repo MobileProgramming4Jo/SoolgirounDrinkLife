@@ -17,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
-import androidx.activity.viewModels
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var myDBHelper: DBHelper
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     val icontarr = arrayListOf<Int>(R.drawable.ic_navbar_calendar,
                                                 R.drawable.ic_navbar_statistic,
                                                 R.drawable.ic_navbar_settings)
-    val myViewModel : MyViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SetGoal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="20dp"
+        android:text="음주 목표 설정"
+        style = "@style/TitleTextView"/>
+
+    <TextView
+        android:id="@+id/ex1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/notosans_bold"
+        android:text="한 주 동안 넘지 않을 주량 목표치를 설정해주세요!" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:textSize="14dp"
+            android:textColor="@color/titleColor"
+            android:fontFamily="@font/notosans_bold"
+            android:text="소주" />
+
+        <EditText
+            android:id="@+id/week_goal"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/bluebox_shape"
+            android:ems="10"/>
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="14dp"
+            android:textColor="@color/titleColor"
+            android:fontFamily="@font/notosans_bold"
+            android:text="병 이하" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ex2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/notosans_bold"
+        android:text="하루 동안 넘지 않을 주량 목표치를 설정해주세요!" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:textSize="14dp"
+            android:textColor="@color/titleColor"
+            android:fontFamily="@font/notosans_bold"
+            android:text="소주" />
+
+        <EditText
+            android:id="@+id/day_goal"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/bluebox_shape"
+            android:ems="10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="14dp"
+            android:textColor="@color/titleColor"
+            android:fontFamily="@font/notosans_bold"
+            android:text="병 이하" />
+    </LinearLayout>
+
+    <android.widget.Button
+        android:id="@+id/setGoal"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/greenbox_shape"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="저장하기" />
+
+</LinearLayout>

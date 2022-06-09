@@ -11,25 +11,39 @@
         <entry key="..\:/MyApplication00/app/src/main/res/drawable/edittext_style.xml" value="0.156" />
         <entry key="..\:/MyApplication00/app/src/main/res/drawable/greenbox_shape.xml" value="0.156" />
         <entry key="..\:/MyApplication00/app/src/main/res/layout/activity_main.xml" value="0.2312563323201621" />
-        <entry key="..\:/MyApplication00/app/src/main/res/layout/activity_register.xml" value="0.33" />
-        <entry key="..\:/MyApplication00/app/src/main/res/layout/fragment_calendar.xml" value="0.33" />
+        <entry key="..\:/MyApplication00/app/src/main/res/layout/activity_register.xml" value="0.15020263424518743" />
+        <entry key="..\:/MyApplication00/app/src/main/res/layout/fragment_calendar.xml" value="0.15020263424518743" />
         <entry key="..\:/MyApplication00/app/src/main/res/layout/fragment_settings.xml" value="0.15020263424518743" />
-<<<<<<< HEAD
-        <entry key="..\:/MyApplication00/app/src/main/res/layout/list_item_day.xml" value="0.25181159420289856" />
-        <entry key="..\:/MyApplication00/app/src/main/res/layout/list_item_month.xml" value="0.36580310880829014" />
-=======
         <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife/app/src/main/res/layout/activity_main.xml" value="0.55625" />
         <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife/app/src/main/res/layout/activity_register.xml" value="0.55625" />
         <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife/app/src/main/res/layout/fragment_calendar.xml" value="0.55625" />
-<<<<<<< HEAD
->>>>>>> f75d6eb4fec2c112af0d59620dd48eb8820bd68a
-=======
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable-night/greenbox_shape.xml" value="0.4195" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable/bluebox_shape.xml" value="0.4195" />
         <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable/button_radius.xml" value="0.4195" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable/greenbox_shape.xml" value="0.4195" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable/left_border_radius_gray_rectangle.xml" value="0.4195" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable/left_border_radius_rectangle.xml" value="0.4195" />
         <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable/radius.xml" value="0.4195" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable/right_border_radius_gray_rectangle.xml" value="0.4195" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable/right_border_radius_rectangle.xml" value="0.4195" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable/round_beige_rectangle.xml" value="0.4195" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/drawable/round_rectangle.xml" value="0.4195" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/activity_diary.xml" value="0.55625" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/activity_main.xml" value="0.55625" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/activity_register.xml" value="0.55625" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/activity_set_goal.xml" value="0.5432291666666667" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/activity_show_diary.xml" value="0.55625" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/custom_plus_minus_bar.xml" value="0.55625" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/custom_switch_button.xml" value="0.55625" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/fragment_calendar.xml" value="0.55625" />
         <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/fragment_settings.xml" value="0.315625" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/fragment_stat.xml" value="0.55625" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/list_item_day.xml" value="0.55625" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/list_item_month.xml" value="0.55625" />
         <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/object_dialog.xml" value="0.5552083333333333" />
         <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/row_setting.xml" value="0.315625" />
->>>>>>> c1fcd39b87c335369737e179da6929f81f0ac1c0
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/set_goal.xml" value="0.5552083333333333" />
+        <entry key="..\:/Users/kimjh/AndroidStudioProjects/SoolgirounDrinkLife3/app/src/main/res/layout/setgoal.xml" value="0.5552083333333333" />
         <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable-night/edittext_style.xml" value="0.1205" />
         <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable-night/greenbox_style.xml" value="0.2965" />
         <entry key="..\:/Users/pluto/AndroidStudioProjects/MyApplication00/app/src/main/res/drawable-night/weeklygoal_style.xml" value="0.2965" />
@@ -50,7 +64,6 @@
         <entry key="app/src/main/res/drawable/round_beige_rectangle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/round_rectangle.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_diary.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.17239583333333333" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.11197916666666667" />
         <entry key="app/src/main/res/layout/activity_show_diary.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_plus_minus_bar.xml" value="0.1125" />
