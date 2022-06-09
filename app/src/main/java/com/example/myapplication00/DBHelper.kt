@@ -36,7 +36,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         val MEMO = "memo"
         val SOJU = "soju"
         val BEER = "beer"
-        val MAKGEOLLI = "makeolli"
+        val MAKGEOLLI = "makgeolli"
         val WINE = "wine"
         val DIARY = "diary"
         val SELF_EXAMINATION = "self_examination"
