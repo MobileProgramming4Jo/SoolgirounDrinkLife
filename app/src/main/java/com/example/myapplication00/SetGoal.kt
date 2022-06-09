@@ -45,7 +45,13 @@ class SetGoal : AppCompatActivity() {
                     val daily = day_goal.text.toString().toInt()
                     val weekly = week_goal.text.toString().toInt()
                     val now = LocalDate.now()
-                    myDBHelper.updateGoal(now.toString(), daily, weekly)
+                    if(myDBHelper.checkData(now.toString())){
+                        myDBHelper.updateGoal(now.toString(), daily, weekly)
+                    }
+                    else{
+                        myDBHelper.insertFirst(daily, weekly)
+                    }
+
                     Toast.makeText(this@SetGoal, "성공적으로 목표를 변경했습니다.", Toast.LENGTH_SHORT).show()
                     /*val intent = Intent(this@SetGoal, MainActivity::class.java)
                     startActivity(intent)*/

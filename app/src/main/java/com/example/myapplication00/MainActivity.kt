@@ -7,11 +7,13 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.myapplication00.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
@@ -89,13 +91,11 @@ class MainActivity : AppCompatActivity() {
         )
 
         val calendar = Calendar.getInstance()
-        if(calendar.get(Calendar.HOUR_OF_DAY)>=8){
-            calendar.add(Calendar.DAY_OF_MONTH, 1)
-        }
-
+        Log.i("test", calendar.get(Calendar.HOUR_OF_DAY).toString())
         calendar.apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 8)
+            add(Calendar.DAY_OF_MONTH, 1)
+            set(Calendar.HOUR_OF_DAY, 0)
         }
 
 
@@ -121,9 +121,16 @@ class MainActivity : AppCompatActivity() {
             dbfile.parentFile.mkdir()
         }
 
+
+
         myDBHelper = DBHelper(this)
-        val date = LocalDate.now().toString()
-        myDBHelper.checkData(date)
+        val date = LocalDate.now()
+        val yesterday = date.minusDays(1)
+        if(!myDBHelper.checkData(date.toString()) && !myDBHelper.checkData(yesterday.toString())){
+            Toast.makeText(this, "목표를 설정하세요", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@MainActivity, SetGoal::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setWeekAlarm() {
