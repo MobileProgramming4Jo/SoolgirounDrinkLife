@@ -44,6 +44,11 @@ class ShowDiaryActivity : AppCompatActivity() {
             intent.putExtra("date", date)
             activityResultLauncher.launch(intent)
         }
+
+        binding.nothingButton.setOnClickListener {
+            val intent  = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initLayout() {

@@ -134,10 +134,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     style="@style/TitleTextView"
+                    android:id="@+id/dateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="일정"/>
+                    android:gravity="center"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    style="@style/TitleTextView"
+                    android:text="일정"
+                    android:textSize="16sp"
+                    android:layout_marginTop="5dp"/>
+
                 <LinearLayout
                     android:id="@+id/scheduleBox"
                     android:visibility="gone"

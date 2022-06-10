@@ -305,12 +305,14 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         var drunk : Int = -1
         if(flag){
             cursor.moveToFirst()
-            daily = cursor.getInt(1)
-            drunk = cursor.getInt(12)
+            if(cursor.getIntOrNull(12) != null){
+                daily = cursor.getInt(1)
+                drunk = cursor.getInt(12) + cursor.getInt(11) + cursor.getInt(13) + cursor.getInt(14)
+            }
+
         }
         cursor.close()
         db.close()
-
         return if (daily < 0 || drunk < 0)
             -1
         else if (daily <= drunk)
@@ -327,8 +329,10 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         var title = ""
         if(flag){
             cursor.moveToFirst()
-            title = cursor.getString(4)
-            title = cursor.getString(4)
+            if(cursor.getString(4) != null){
+                title = cursor.getString(4)
+            }
+
         }
         cursor.close()
         db.close()
@@ -385,7 +389,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
             cursor.moveToFirst()
 
             var soju = cursor.getIntOrNull(11) ?: 0
-            if (soju > 0) {
+            if (soju != null && soju > 0) {
                 alcoholString += "소주"
                 var bottle = soju.floorDiv(7)
                 if (bottle > 0) alcoholString += " ${bottle} 병"
@@ -394,7 +398,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
             }
 
             var beer = cursor.getIntOrNull(12) ?: 0
-            if (beer > 0) {
+            if (beer != null && beer > 0) {
                 alcoholString += if(alcoholString == "") "맥주"
                                     else "\n맥주"
                 var bottle = beer.floorDiv(7)
@@ -404,7 +408,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
             }
 
             var makeolli = cursor.getIntOrNull(13) ?: 0
-            if (makeolli > 0) {
+            if (makeolli != null && makeolli > 0) {
                 alcoholString += if(alcoholString == "") "막걸리"
                                     else "\n막걸리"
                 var bottle = makeolli.floorDiv(7)
@@ -414,7 +418,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
             }
 
             var wine = cursor.getIntOrNull(14) ?: 0
-            if (wine > 0) {
+            if (wine != null && wine > 0) {
                 alcoholString += if(alcoholString == "") "와인"
                                     else "\n와인"
                 var bottle = wine.floorDiv(7)
@@ -422,10 +426,16 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
                 var cup = wine % 7
                 if (cup > 0) alcoholString += " ${cup} 잔"
             }
-
+            if(soju == null && beer == null && makeolli == null && wine == null){
+                cursor.close()
+                db.close()
+                return ""
+            }
             if (alcoholString == ""){
                 alcoholString += "금주 성공!"
             }
+
+
         }
         //else : 데이터 없음, alcoholString = ""
 
