@@ -67,7 +67,7 @@ class registerActivity : AppCompatActivity() {
             val date = LocalDate.now()
             val daily_goal = mydb.findDailyGoal(date.toString()).toInt()
             val weekly_goal = mydb.findWeeklyGoal(date.toString()).toInt()
-            if(mydb.checkData(date.toString())){
+            if(mydb.checkData(start_time_date)){
                 mydb.updateDairy(start_time_date, binding.titletext.text.toString(), binding.locationtext.text.toString(),
                     isallday, start_time, end_time, alarm, binding.memotext.text.toString())
             }else{

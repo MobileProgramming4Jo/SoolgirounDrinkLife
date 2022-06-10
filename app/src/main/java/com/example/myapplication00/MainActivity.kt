@@ -9,6 +9,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.myapplication00.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         initlayout()
         initDB()
         initAlarm()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 
     private fun initlayout() {
@@ -162,5 +170,7 @@ class MainActivity : AppCompatActivity() {
             Log.v("alarm","set")
         }
     }
+
+
 }
 

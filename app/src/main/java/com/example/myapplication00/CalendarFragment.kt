@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.myapplication00.databinding.FragmentCalendarBinding
@@ -22,11 +24,13 @@ class CalendarFragment : Fragment(), OnItemClick {
     private val myViewModel: MyViewModel by activityViewModels()
     lateinit var mydb: DBHelper
     lateinit var activity : Activity
+    lateinit var monthListAdapter : AdapterMonth
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         activity = context as Activity
+
     }
 
     override fun onCreateView(
@@ -48,7 +52,7 @@ class CalendarFragment : Fragment(), OnItemClick {
         })
 
         val monthListManager = LinearLayoutManager(requireActivity().applicationContext, LinearLayoutManager.HORIZONTAL, false)
-        val monthListAdapter = AdapterMonth(requireActivity().applicationContext, this)
+        monthListAdapter = AdapterMonth(requireActivity().applicationContext, this)
 
         binding.calendarCustom.apply {
             layoutManager = monthListManager
@@ -73,7 +77,7 @@ class CalendarFragment : Fragment(), OnItemClick {
 
             //diarybox
             var alcoholString = mydb.getAlcoholString(it)
-            if(alcoholString != ""){ //데이터 존재
+            if(alcoholString != "" && alcoholString != "null"){ //데이터 존재
                 binding.diaryBox.isVisible = true
                 binding.diaryBoxNone.isVisible = false
                 binding.diaryDate.text = it
@@ -108,6 +112,9 @@ class CalendarFragment : Fragment(), OnItemClick {
 
     override fun setDate(date: String) {
         myViewModel.setLiveData(date)
+        var dateParse = date.split("-")
+        binding.dateText.text = "${dateParse[0]}년 ${dateParse[1]}월 ${dateParse[2]}일"
+
     }
 
     override fun onStart() {
@@ -117,6 +124,7 @@ class CalendarFragment : Fragment(), OnItemClick {
         val weekly_goal = mydb.findWeeklyGoal(date)
         binding.dailygoaltext.text = "소주 "+daily_goal+"병 이하"
         binding.weeklygoaltext.text = "소주 "+weekly_goal+"병 이하"
+
     }
 }
 

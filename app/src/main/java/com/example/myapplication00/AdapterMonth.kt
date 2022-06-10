@@ -49,6 +49,8 @@ class AdapterMonth(val context: Context, listener : OnItemClick): RecyclerView.A
         }
     }
 
+
+
     override fun getItemCount(): Int {
         return Int.MAX_VALUE
     }
