@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
 import com.example.myapplication00.databinding.ActivityDiaryBinding
 
 class DiaryActivity : AppCompatActivity() {
@@ -80,15 +81,12 @@ class DiaryActivity : AppCompatActivity() {
                 tip = binding.tipEditText.text.toString()
             )
 
-            Log.d("DiaryData", diaryData.toString())
-
             var isSucceed = false
 
-            if(!isExist) {
-                isSucceed = dbHelper.insertDiary(diaryData)
-            } else {
-                isSucceed = dbHelper.updateDiary(date!!, diaryData)
-            }
+            isSucceed = dbHelper.updateDiary(date!!, diaryData)
+            Log.d("DATE", date.toString())
+            Log.d("DiaryData", diaryData.toString())
+            Log.d("DiaryDataisSucceed", isSucceed.toString())
             if (isSucceed) {
                 val intent = Intent()
                 setResult(Activity.RESULT_OK, intent)
