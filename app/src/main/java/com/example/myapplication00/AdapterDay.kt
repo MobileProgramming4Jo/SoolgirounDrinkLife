@@ -30,9 +30,6 @@ class AdapterDay(val context: Context, val tempMonth:Int, val dayList: MutableLi
 
             mCallback.setDate(date)
 
-            //테스트용
-            /*Toast.makeText(context, "${dayList[position]}", Toast.LENGTH_SHORT).show()
-            Toast.makeText(context, date, Toast.LENGTH_SHORT).show()*/
         }
         holder.layout.itemDayText.text = dayList[position].date.toString()
 

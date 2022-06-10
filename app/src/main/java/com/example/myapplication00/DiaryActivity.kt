@@ -68,7 +68,6 @@ class DiaryActivity : AppCompatActivity() {
             }
             if (isSucceed) {
                 val intent = Intent()
-//                intent.putExtra("DiaryData", diaryData)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             } else {
