@@ -105,9 +105,15 @@ class CalendarFragment : Fragment(), OnItemClick {
         binding.dateText.text = "${dateParse[0]}년 ${dateParse[1]}월 ${dateParse[2]}일"
 
         if(date > LocalDate.now().toString()) {
-            binding.diaryBox.isVisible = false
             binding.diaryBoxNone.isVisible = false
             binding.diaryTitleText.isVisible = false
+
+        } else {
+            binding.diaryTitleText.isVisible = true
+        }
+
+        if(binding.diaryBox.isVisible) {
+            binding.diaryTitleText.isVisible = true
         }
 
     }
