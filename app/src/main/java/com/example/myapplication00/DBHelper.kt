@@ -490,6 +490,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         val db = writableDatabase
         val cursor = db.rawQuery(strsql, null)
         val flag = cursor.count!=0
+        Log.d("COUNT", cursor.count.toString())
         if(flag){
             cursor.moveToFirst()
             val values = ContentValues()
