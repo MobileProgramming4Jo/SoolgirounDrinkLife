@@ -306,19 +306,23 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         if(flag){
             cursor.moveToFirst()
             if(cursor.getIntOrNull(12) != null){
-                daily = cursor.getInt(1)
+                daily = cursor.getInt(1) * 7
                 drunk = cursor.getInt(12) + cursor.getInt(11) + cursor.getInt(13) + cursor.getInt(14)
+                Log.i("drunk", drunk.toString())
+                Log.i("drunk", daily.toString())
             }
-
         }
         cursor.close()
         db.close()
-        return if (daily < 0 || drunk < 0)
-            -1
-        else if (daily <= drunk)
-            1
-        else
-            0
+        if(daily < 0 || drunk < 0){
+            return -1
+        }
+        else if(daily <= drunk){
+            Log.i("drunk", "return 1")
+            return 0
+        }else{
+            return 1
+        }
     }
 
     fun getScheduleTitle(date: String) : String {
