@@ -26,7 +26,7 @@
         <item name="colorOnSurface">@color/white</item>
         <item name="android:textSize">10sp</item>
         <item name="android:fontStyle">normal</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/titleColor</item>
         <item name="android:fontFamily">@font/notosans_regular</item>
     </style>
 
@@ -34,7 +34,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">10sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/titleColor</item>
         <item name="android:fontFamily">@font/notosans_bold</item>
         <item name="android:includeFontPadding">false</item>
     </style>
@@ -42,7 +42,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">10sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/titleColor</item>
         <item name="android:fontFamily">@font/notosans_regular</item>
         <item name="android:includeFontPadding">false</item>
     </style>
@@ -50,7 +50,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">10sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/titleColor</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:includeFontPadding">false</item>
     </style>
@@ -60,7 +60,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">26sp</item>
         <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/titleColor</item>
         <item name="android:fontFamily">@font/notosans_bold</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:layout_marginTop">35dp</item>

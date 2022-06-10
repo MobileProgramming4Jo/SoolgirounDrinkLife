@@ -33,11 +33,11 @@ class AdapterDay(val context: Context, val tempMonth:Int, val dayList: MutableLi
         }
         holder.layout.itemDayText.text = dayList[position].date.toString()
 
-        holder.layout.itemDayText.setTextColor(when(position % 7) {
-            0 -> Color.RED
-            6 -> Color.BLUE
-            else -> R.color.titleColor
-        })
+        if(position % 7 == 6){
+            holder.layout.itemDayText.setTextColor(Color.BLUE)
+        }else if(position % 7 == 0){
+            holder.layout.itemDayText.setTextColor(Color.RED)
+        }
 
         if(tempMonth != dayList[position].month) {
             holder.layout.itemDayText.alpha = 0.4f
