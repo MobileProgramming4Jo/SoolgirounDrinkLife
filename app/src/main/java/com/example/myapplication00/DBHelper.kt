@@ -142,7 +142,12 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         }
         cursor.close()
         db.close()
-        return daily
+        if(flag){
+            return daily
+        }
+        else{
+            return "null"
+        }
     }
 
     // DB에 registerActivity에서 입력한 값을 넣어주는 함수
@@ -668,9 +673,10 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
 
         for (i in 0..days - 1) {
             var changeDate = date.plusDays(i.toLong()).toString()
-            daily_goal.add(findDailyGoal(changeDate).toInt()) // 날마다 종류별 1개씩 마신 양 가져오기
-            //해야 할 작업 작성부분
-
+            if(findDailyGoal(changeDate) != "null"){
+                daily_goal.add(findDailyGoal(changeDate).toInt()) // 날마다 종류별 1개씩 마신 양 가져오기
+                //해야 할 작업 작성부분
+            }
         }
 
         return daily_goal
