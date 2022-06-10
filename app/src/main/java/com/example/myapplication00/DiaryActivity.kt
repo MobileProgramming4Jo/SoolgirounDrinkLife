@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import com.example.myapplication00.databinding.ActivityDiaryBinding
 
@@ -46,12 +47,34 @@ class DiaryActivity : AppCompatActivity() {
         binding.saveButton.setOnClickListener {
             val isExist = diaryData.isExist
 
+
+            var soju = binding.sojuPMBar.findViewById<TextView>(R.id.countText).text.toString().toInt()
+            var beer = binding.beerPMBar.findViewById<TextView>(R.id.countText).text.toString().toInt()
+            var makeolli = binding.makeolliPMBar.findViewById<TextView>(R.id.countText).text.toString().toInt()
+            var wine = binding.winePMBar.findViewById<TextView>(R.id.countText).text.toString().toInt()
+
+            if(binding.sojuSwitchButton.isBottle) {
+                soju *= 7
+            }
+
+            if(binding.beerSwitchButton.isBottle) {
+                beer *= 3
+            }
+
+            if(binding.makeolliSwitchButton.isBottle) {
+                makeolli *= 4
+            }
+
+            if(binding.wineSwitchButton.isBottle) {
+                wine *= 8
+            }
+
             diaryData = DiaryData(
                 isExist = true,
-                soju = binding.sojuPMBar.findViewById<TextView>(R.id.countText).text.toString().toInt(),
-                beer = binding.beerPMBar.findViewById<TextView>(R.id.countText).text.toString().toInt(),
-                makeolli = binding.makeolliPMBar.findViewById<TextView>(R.id.countText).text.toString().toInt(),
-                wine = binding.winePMBar.findViewById<TextView>(R.id.countText).text.toString().toInt(),
+                soju = soju,
+                beer = beer,
+                makeolli = makeolli,
+                wine = wine,
                 diary = binding.diaryEditText.text.toString(),
                 self_examination = binding.selfExaminationEditText.text.toString(),
                 tip = binding.tipEditText.text.toString()
@@ -68,7 +91,6 @@ class DiaryActivity : AppCompatActivity() {
             }
             if (isSucceed) {
                 val intent = Intent()
-//                intent.putExtra("DiaryData", diaryData)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             } else {

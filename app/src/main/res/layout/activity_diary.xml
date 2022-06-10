@@ -80,6 +80,7 @@
             <com.example.myapplication00.CustomSwitchButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/sojuSwitchButton"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp" />
         </LinearLayout>
@@ -109,6 +110,7 @@
             <com.example.myapplication00.CustomSwitchButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/beerSwitchButton"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"/>
 
@@ -139,6 +141,7 @@
             <com.example.myapplication00.CustomSwitchButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/makeolliSwitchButton"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"/>
 
@@ -168,6 +171,7 @@
             <com.example.myapplication00.CustomSwitchButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/wineSwitchButton"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp" />
 
