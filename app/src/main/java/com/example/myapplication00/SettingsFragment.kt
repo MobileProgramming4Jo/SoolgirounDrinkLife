@@ -54,11 +54,10 @@ class SettingsFragment : Fragment() {
 
                     1 -> {
                         deleteCache(activity.baseContext)
-                        val status = deleteDB()
+                        deleteDB()
                         finishAffinity(activity)
                         val intent = Intent(activity, MainActivity::class.java)
                         startActivity(intent)
-                        Log.d("DELETE DB", status.toString())
                     }
 
                     2 -> {
