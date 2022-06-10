@@ -23,6 +23,7 @@
         android:layout_marginTop="20dp"
         android:textSize="14dp"
         android:textStyle="bold"
+        android:textColor="@color/titleColor"
         android:fontFamily="@font/notosans_bold"
         android:text="한 주 동안 넘지 않을 주량 목표치를 설정해주세요!" />
 
@@ -69,6 +70,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="50dp"
         android:textSize="14dp"
+        android:textColor="@color/titleColor"
         android:textStyle="bold"
         android:fontFamily="@font/notosans_bold"
         android:text="하루 동안 넘지 않을 주량 목표치를 설정해주세요!" />

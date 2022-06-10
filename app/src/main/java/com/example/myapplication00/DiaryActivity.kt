@@ -84,6 +84,9 @@ class DiaryActivity : AppCompatActivity() {
             var isSucceed = false
 
             isSucceed = dbHelper.updateDiary(date!!, diaryData)
+            if(!isSucceed) {
+                isSucceed = dbHelper.insertDiary(date!!, diaryData)
+            }
             Log.d("DATE", date.toString())
             Log.d("DiaryData", diaryData.toString())
             Log.d("DiaryDataisSucceed", isSucceed.toString())

@@ -458,12 +458,12 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         return flag;
     }
 
-    fun insertDiary(diaryData: DiaryData) : Boolean {
+    fun insertDiary(date: String, diaryData: DiaryData) : Boolean {
         val now = LocalDate.now()
         var yesterday = now.minusDays(1)
 
         val values = ContentValues()
-        values.put(DATE, now.toString())
+        values.put(DATE, date)
         values.put(SOJU, diaryData.soju)
         values.put(BEER, diaryData.beer)
         values.put(MAKGEOLLI, diaryData.makeolli)

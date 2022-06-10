@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="titleColor">#FF000000</color>
     <color name="textColor">#FFFFFFFF</color>
+    <color name="lightgreen">#01DFA5</color>
+    <color name="view">#E6DEDE</color>
 
     <color name="green">#FF7FD1AE</color>
     <color name="lightblue">#FFCBDCFB</color>

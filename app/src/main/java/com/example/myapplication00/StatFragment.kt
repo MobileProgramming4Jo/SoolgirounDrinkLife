@@ -25,6 +25,7 @@ class StatFragment : Fragment() {
 
     val cal = Calendar.getInstance()
     val nowMonth = cal.get(Calendar.MONTH) + 1
+    val now = LocalDate.now().toString()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,23 +87,30 @@ class StatFragment : Fragment() {
         }
 
 
+        val isDailyAchieve = DBHelper.isDailyGoalAchieved(now)
+        if(isDailyAchieve==0) {
+            adviceText.text = "오늘은 목표치를 초과했어요 ! 경고 !!"
+        }else if(isDailyAchieve==-1) {
+            adviceText.text = "목표치나 일정을 입력하지 않았어요"
+        }else {
+            adviceText.text = "오늘은 목표치를 지켰어요 !! 칭찬해요 !"
+        }
 
         tablayout.addOnTabSelectedListener(object:TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when(tab?.position) {
                     0-> {
-                        var count = 0
-                        for(i in array) {
-                            if(DBHelper.getDailyGoal(nowMonth).get(i)<array.get(i).toInt()) {
-                                count+=1
-                            }
-                        }
-                        if(count>1) {
-                            adviceText.text = "한달 동안 목표량을 초과한 날은 ${count}일 입니다. \n 다음 달엔 지키도록 노력해주세요 !"
-                        } else {
-                            adviceText.text = "한달 동안 목표량을 초과한 날이 없습니다. \n 참 잘했어요 !"
+                        val isDailyAchieve = DBHelper.isDailyGoalAchieved(now)
+                        if(isDailyAchieve==0) {
+                            adviceText.text = "오늘은 목표치를 초과했어요 ! 경고 !!"
+                        }else if(isDailyAchieve==-1) {
+                            adviceText.text = "목표치나 일정을 입력하지 않았어요"
+                        }else {
+                            adviceText.text = "오늘은 목표치를 지켰어요 !! 칭찬해요 !"
                         }
                     }
+
+
                     1->{
                         adviceText.text = "내가 가장 많이 마신 술은 ${flagName} 입니다 !"
                     }
@@ -201,4 +209,3 @@ class StatFragment : Fragment() {
 
 
 }
-
