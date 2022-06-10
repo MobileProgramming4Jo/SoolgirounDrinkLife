@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/titleColor"
+        android:textSize="15dp"
         android:text="다크모드 사용"
         android:layout_weight="1"
         android:layout_marginTop="10dp"
